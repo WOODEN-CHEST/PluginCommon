@@ -1,12 +1,14 @@
-package sus.keiger.bsripoff.command;
+package sus.keiger.plugincommon.command;
 
 import org.bukkit.Location;
 import org.bukkit.World;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.function.BiConsumer;
+import java.util.Locale;
+import java.util.function.Consumer;
 
 public abstract class CoordinateNode extends CommandNode
 {
@@ -19,7 +21,7 @@ public abstract class CoordinateNode extends CommandNode
 
 
     // Constructors.
-    public CoordinateNode(BiConsumer<CommandData, HashMap<String, Object>> executor,
+    public CoordinateNode(Consumer<CommandData> executor,
                           int coordinateCount,
                           String parsedDataKey)
     {
@@ -91,6 +93,7 @@ public abstract class CoordinateNode extends CommandNode
 
     private String GetAbsoluteSuggestion(int startIndex, Location location)
     {
+        DecimalFormat Format = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance(Locale.US));
         StringBuilder Suggestion = new StringBuilder();
 
         for (int i = startIndex; i < _coordinateCount; i++)
@@ -99,7 +102,7 @@ public abstract class CoordinateNode extends CommandNode
             {
                 Suggestion.append(' ');
             }
-            Suggestion.append("%.2f".formatted(GetCoordinateByIndex(location, i)));
+            Suggestion.append(Format.format(GetCoordinateByIndex(location, i)));
         }
 
         return Suggestion.toString();
@@ -120,7 +123,7 @@ public abstract class CoordinateNode extends CommandNode
     }
 
     @Override
-    public boolean ParseCommand(CommandData data, HashMap<String, Object> parsedData)
+    public boolean ParseCommand(CommandData data)
     {
         List<Double> ParsedCoordinates = ParseAllCoordinates(data);
 
@@ -129,7 +132,7 @@ public abstract class CoordinateNode extends CommandNode
             return false;
         }
 
-        AddParsedData(ParsedCoordinatesToLocation(data.GetLocation().getWorld(), ParsedCoordinates), parsedData);
+        AddParsedData(ParsedCoordinatesToLocation(data.GetLocation().getWorld(), ParsedCoordinates), data);
 
         return true;
     }

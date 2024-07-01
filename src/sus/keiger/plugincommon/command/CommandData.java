@@ -1,13 +1,15 @@
-package sus.keiger.bsripoff.command;
+package sus.keiger.plugincommon.command;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.apache.commons.lang.NullArgumentException;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
-import sus.keiger.bsripoff.BSRipoff;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class CommandData
@@ -20,6 +22,7 @@ public class CommandData
     private String _feeedbackString = null;
     private List<String> _tabRecommendations = null;
     int _index = 0;
+    private final HashMap<String, Object> _parsedData = new HashMap<>();
 
 
     // Private fields.
@@ -87,7 +90,6 @@ public class CommandData
             NamedTextColor Color = _status == CommandStatus.Successful ?
                     NamedTextColor.WHITE : NamedTextColor.RED;
 
-
             return Component.text(_feeedbackString).color(Color);
         }
 
@@ -131,7 +133,8 @@ public class CommandData
         {
             return Sender.getLocation();
         }
-        return new Location(BSRipoff.GetPlugin().GetServerManager().GetOverworld(), 0d, 0d, 0d, 0f, 0f);
+        return new Location(Bukkit.getServer().getWorld(new NamespacedKey("minecraft", "overworld")),
+                0d, 0d, 0d, 0f, 0f);
     }
 
     public String GetLabel()
@@ -142,6 +145,32 @@ public class CommandData
     public String GetCommand()
     {
         return _command;
+    }
+
+    public void AddParsedData(String key, Object value)
+    {
+        _parsedData.put(key, value);
+    }
+
+    @SuppressWarnings("unchecked") // Yay, suppressing warnings!
+    public <T> T GetParsedData(String key)
+    {
+        Object TargetObject = _parsedData.get(key);
+        if (TargetObject == null)
+        {
+            return null;
+        }
+
+        try
+        {
+            return (T)TargetObject;
+        }
+        catch (ClassCastException e)
+        {
+            Bukkit.getLogger().warning("Attempted to retrieve parsed data of wrong type for command %s"
+                    .formatted(GetLabel()));
+            return null;
+        }
     }
 
 

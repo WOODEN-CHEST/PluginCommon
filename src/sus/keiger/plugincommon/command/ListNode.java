@@ -1,10 +1,7 @@
-package sus.keiger.bsripoff.command;
+package sus.keiger.plugincommon.command;
 
-import org.bukkit.Bukkit;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class ListNode extends CommandNode
@@ -15,7 +12,7 @@ public class ListNode extends CommandNode
 
 
     // Constructors.
-    public ListNode(BiConsumer<CommandData, HashMap<String, Object>> executor, String parsedDataKey, String ... options)
+    public ListNode(Consumer<CommandData> executor, String parsedDataKey, String ... options)
     {
         super(executor, parsedDataKey);
 
@@ -39,7 +36,7 @@ public class ListNode extends CommandNode
         _optionSupplier = null;
     }
 
-    public ListNode(BiConsumer<CommandData, HashMap<String, Object>> executor,
+    public ListNode(Consumer<CommandData> executor,
                     String parsedDataKey,
                     Function<CommandData, List<String>> optionSupplier)
     {
@@ -64,7 +61,7 @@ public class ListNode extends CommandNode
     }
 
     @Override
-    public boolean ParseCommand(CommandData data, HashMap<String, Object> parsedData)
+    public boolean ParseCommand(CommandData data)
     {
         List<String> Options =  _options != null ? _options : _optionSupplier.apply(data);
         String Word = (data.IsMoreDataAvailable() && data.GetCommand().charAt(data.GetIndex()) == StringNode.QUOTE) ?
@@ -72,7 +69,7 @@ public class ListNode extends CommandNode
 
         if (Options.contains(Word))
         {
-            AddParsedData(Word, parsedData);
+            AddParsedData(Word, data);
             return true;
         }
         return false;

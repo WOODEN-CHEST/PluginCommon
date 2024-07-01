@@ -1,17 +1,17 @@
-package sus.keiger.bsripoff.command;
+package sus.keiger.plugincommon.command;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.TabExecutor;
 
-import sus.keiger.bsripoff.BSRipoff;
-
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 
 public class ServerCommand extends CommandNode implements TabExecutor
@@ -22,7 +22,7 @@ public class ServerCommand extends CommandNode implements TabExecutor
 
 
     // Constructors.
-    public ServerCommand(String label, BiConsumer<CommandData, HashMap<String, Object>> executor)
+    public ServerCommand(String label, Consumer<CommandData> executor)
     {
         super(executor, null);
 
@@ -30,12 +30,12 @@ public class ServerCommand extends CommandNode implements TabExecutor
         {
             throw new IllegalArgumentException();
         }
-        if (BSRipoff.GetPlugin().getCommand(label) == null)
+        if (Bukkit.getPluginCommand(label) == null)
         {
             throw new IllegalArgumentException("Command \"%s\" not found".formatted(label));
         }
 
-        PluginCommand Command = BSRipoff.GetPlugin().getCommand(label);
+        PluginCommand Command = Bukkit.getPluginCommand(label);
         if (Command != null)
         {
             Command.setTabCompleter(this);
@@ -54,12 +54,12 @@ public class ServerCommand extends CommandNode implements TabExecutor
 
 
     // Private methods.
-    private void VerifyLabel(String label)
+    private void VerifyName(Command command)
     {
-        if (!_label.equals(label))
+        if (!_label.equals(command.getName()))
         {
             throw new IllegalStateException("Label mismatch. Command's label is \"%s\", got \"%s\"."
-                    .formatted(_label, label));
+                    .formatted(_label, command.getName()));
         }
     }
 
@@ -68,10 +68,20 @@ public class ServerCommand extends CommandNode implements TabExecutor
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
-        VerifyLabel(label);
+        VerifyName(command);
         CommandData Data = new CommandData(_label, args, sender);
         Data.MoveIndexToNextNonWhitespace();
-        ExecuteCommand(Data, new HashMap<String, Object>());
+        try
+        {
+            ExecuteCommand(Data);
+        }
+        catch (Exception e)
+        {
+            Data.SetFeedback(Component.text("A critical exception occurred while executing this command. " +
+                    "Please report this to an admin immediately. Error message: %s".formatted(e.getMessage()))
+                    .color(NamedTextColor.RED));
+            Bukkit.getLogger().severe(e.toString());
+        }
 
         if (Data.GetFeedback() != null)
         {
@@ -84,12 +94,22 @@ public class ServerCommand extends CommandNode implements TabExecutor
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args)
     {
-        VerifyLabel(label);
+        VerifyName(command);
         CommandData Data = new CommandData(_label, args, sender);
         Data.MoveIndexToNextNonWhitespace();
-        if (!TabCommand(Data, new HashMap<String, Object>()))
+        try
         {
-            SuggestSubNodes(Data);
+            if (!TabCommand(Data))
+            {
+                SuggestSubNodes(Data);
+            }
+        }
+        catch (Exception e)
+        {
+            Data.SetFeedback(Component.text("A critical exception occurred while tabbing this command. " +
+                    "Please report this to an admin immediately.").color(NamedTextColor.RED));
+            Bukkit.getLogger().severe("(%s) Stack trace: %s".formatted(e.getMessage(),
+                    String.join(" ", Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).toList())));
         }
 
         return Data.GetRecommendations();
@@ -102,7 +122,7 @@ public class ServerCommand extends CommandNode implements TabExecutor
     }
 
     @Override
-    public final boolean ParseCommand(CommandData data, HashMap<String, Object> parsedData)
+    public final boolean ParseCommand(CommandData data)
     {
         return true;
     }

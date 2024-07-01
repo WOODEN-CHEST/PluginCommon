@@ -1,9 +1,8 @@
-package sus.keiger.bsripoff.command;
+package sus.keiger.plugincommon.command;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class KeywordNode extends CommandNode
 {
@@ -12,7 +11,7 @@ public class KeywordNode extends CommandNode
 
 
     // Constructors.
-    public KeywordNode(String keyword, BiConsumer<CommandData, HashMap<String, Object>> executor, String parsedDataKey)
+    public KeywordNode(String keyword, Consumer<CommandData> executor, String parsedDataKey)
     {
         super(executor, parsedDataKey);
 
@@ -45,13 +44,13 @@ public class KeywordNode extends CommandNode
     }
 
     @Override
-    public boolean ParseCommand(CommandData data, HashMap<String, Object> parsedData)
+    public boolean ParseCommand(CommandData data)
     {
         data.MoveIndexToNextNonWhitespace();
         String Keyword = data.ReadWord();
         if (Keyword.equals(_keyword))
         {
-            AddParsedData(Keyword, parsedData);
+            AddParsedData(Keyword, data);
             return true;
         }
         return false;

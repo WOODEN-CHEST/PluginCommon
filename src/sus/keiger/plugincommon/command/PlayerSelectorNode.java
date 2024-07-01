@@ -1,16 +1,11 @@
-package sus.keiger.bsripoff.command;
+package sus.keiger.plugincommon.command;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import sus.keiger.bsripoff.BSRipoff;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.function.BiConsumer;
+import java.util.*;
+import java.util.function.Consumer;
 
 public class PlayerSelectorNode extends CommandNode
 {
@@ -27,7 +22,7 @@ public class PlayerSelectorNode extends CommandNode
 
 
     // Constructors.
-    public PlayerSelectorNode(BiConsumer<CommandData, HashMap<String, Object>> executor,
+    public PlayerSelectorNode(Consumer<CommandData> executor,
                               boolean isSpecialSelectorAllowed,
                               int maxSelectors,
                               String parsedDataKey)
@@ -36,6 +31,32 @@ public class PlayerSelectorNode extends CommandNode
 
         _isSpecialSelectorAllowed = isSpecialSelectorAllowed;
         _maxSelectors = Math.max(1, maxSelectors);
+    }
+
+
+    // Static methods.
+    public static boolean EnsurePlayerCount(CommandData data, List<Player> players, int min)
+    {
+        return EnsurePlayerCount(data, players, min, Integer.MAX_VALUE);
+    }
+
+    public static boolean EnsurePlayerCount(CommandData data, List<Player> players, int min, int max)
+    {
+        if (players.size() < min)
+        {
+            data.SetStatus(CommandStatus.Unsuccessful);
+            data.SetFeedback(players.size() == 0 ? "No players found." : "Expected at least %d player%s, got %d"
+                    .formatted(min, min != 1 ? "s" : "", players.size()));
+            return false;
+        }
+        if (players.size() > max)
+        {
+            data.SetStatus(CommandStatus.Unsuccessful);
+            data.SetFeedback("Expected fewer than %d player%s, got %d"
+                    .formatted(max, max != 1 ? "s" : "", players.size()));
+            return false;
+        }
+        return true;
     }
 
 
@@ -87,7 +108,7 @@ public class PlayerSelectorNode extends CommandNode
             return;
         }
 
-        int Index = BSRipoff.GetPlugin().GetRandom().nextInt(0, Players.size());
+        int Index = new Random().nextInt(0, Players.size());
         selectedPlayers.add(Players.get(Index));
     }
 
@@ -156,9 +177,9 @@ public class PlayerSelectorNode extends CommandNode
     }
 
     @Override
-    public boolean ParseCommand(CommandData data, HashMap<String, Object> parsedData)
+    public boolean ParseCommand(CommandData data)
     {
-        AddParsedData(ParsePlayerSelectors(data), parsedData);
+        AddParsedData(ParsePlayerSelectors(data), data);
         return true;
     }
 }

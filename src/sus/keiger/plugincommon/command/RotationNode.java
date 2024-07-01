@@ -1,17 +1,15 @@
-package sus.keiger.bsripoff.command;
+package sus.keiger.plugincommon.command;
 
 import org.bukkit.Location;
 import org.bukkit.World;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class RotationNode extends CoordinateNode
 {
     // Constructors.
-    public RotationNode(BiConsumer<CommandData, HashMap<String, Object>> executor, String parsedDataKey)
+    public RotationNode(Consumer<CommandData> executor, String parsedDataKey)
     {
         super(executor, 2, parsedDataKey);
     }

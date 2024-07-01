@@ -1,11 +1,8 @@
-package sus.keiger.bsripoff.command;
-
-import org.bukkit.Bukkit;
+package sus.keiger.plugincommon.command;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class StringNode extends CommandNode
@@ -16,14 +13,14 @@ public class StringNode extends CommandNode
 
 
     // Private fields.
-    private boolean _requireQuotes = false;
+    private final boolean _requireQuotes;
     private final Function<CommandData, List<String>> _suggestionSupplier;
 
 
     // Constructors.
-    public StringNode(BiConsumer<CommandData, HashMap<String, Object>> executor,
-                     boolean requireQuotes,
-                     Function<CommandData, List<String>> suggestionSupplier,
+    public StringNode(Consumer<CommandData> executor,
+                      boolean requireQuotes,
+                      Function<CommandData, List<String>> suggestionSupplier,
                       String parsedDataKeyword)
     {
         super(executor, parsedDataKeyword);
@@ -92,20 +89,20 @@ public class StringNode extends CommandNode
 
     // Inherited methods./
     @Override
-    public boolean ParseCommand(CommandData data, HashMap<String, Object> parsedData)
+    public boolean ParseCommand(CommandData data)
     {
         if (_requireQuotes || (data.IsMoreDataAvailable() && data.GetCommand().charAt(data.GetIndex()) == QUOTE))
         {
             String ParsedString = ParseQuotedString(data);
             if (ParsedString != null)
             {
-                AddParsedData(ParsedString, parsedData);
+                AddParsedData(ParsedString, data);
                 return true;
             }
             return false;
         }
 
-        AddParsedData(data.GetCommand().substring(data.GetIndex()), parsedData);
+        AddParsedData(data.GetCommand().substring(data.GetIndex()), data);
         return true;
     }
 

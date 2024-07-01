@@ -1,23 +1,22 @@
-package sus.keiger.bsripoff.command;
+package sus.keiger.plugincommon.command;
 
 import org.apache.commons.lang.NullArgumentException;
 import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public abstract class CommandNode
 {
     // Private fields.
-    private final BiConsumer<CommandData, HashMap<String, Object>> _executor;
+    private final Consumer<CommandData> _executor;
     private final List<CommandNode> _subNodes = new ArrayList<>();
     private final String _parsedDataKey;
 
 
     // Constructors.
-    public CommandNode(BiConsumer<CommandData, HashMap<String, Object>> executor, String parsedDataKey)
+    public CommandNode(Consumer<CommandData> executor, String parsedDataKey)
     {
         _executor = executor;
         _parsedDataKey = parsedDataKey;
@@ -30,9 +29,9 @@ public abstract class CommandNode
         return new ArrayList<>(_subNodes);
     }
 
-    public boolean ExecuteCommand(CommandData data, HashMap<String, Object> parsedData)
+    public boolean ExecuteCommand(CommandData data)
     {
-        boolean IsThisCommand = ParseCommand(data, parsedData);
+        boolean IsThisCommand = ParseCommand(data);
         if (!IsThisCommand)
         {
             return false;
@@ -41,11 +40,11 @@ public abstract class CommandNode
         data.MoveIndexToNextNonWhitespace();
         if (data.IsMoreDataAvailable())
         {
-            TryPassExecuteToNextNode(data, parsedData);
+            TryPassExecuteToNextNode(data);
         }
         else if (_executor != null)
         {
-            _executor.accept(data, parsedData);
+            _executor.accept(data);
         }
         else
         {
@@ -54,9 +53,9 @@ public abstract class CommandNode
         return true;
     }
 
-    public boolean TabCommand(CommandData data, HashMap<String, Object> parsedData)
+    public boolean TabCommand(CommandData data)
     {
-        boolean IsThisCommand = ParseCommand(data, parsedData);
+        boolean IsThisCommand = ParseCommand(data);
         if (!IsThisCommand)
         {
             return false;
@@ -65,7 +64,7 @@ public abstract class CommandNode
         if (data.IsMoreDataAvailable())
         {
             data.MoveIndexToNextNonWhitespace();
-            TryPassTabToNextNode(data, parsedData);
+            TryPassTabToNextNode(data);
         }
         else
         {
@@ -89,7 +88,7 @@ public abstract class CommandNode
         }
     }
 
-    public abstract boolean ParseCommand(CommandData data, HashMap<String, Object> parsedData);
+    public abstract boolean ParseCommand(CommandData data);
 
     public abstract List<String> GetSelfSuggestions(CommandData data);
 
@@ -107,7 +106,7 @@ public abstract class CommandNode
 
     public void ValidateNode()
     {
-        if ((_subNodes.size() == 0) && (_executor == null))
+        if (_subNodes.isEmpty() && (_executor == null))
         {
             throw new IllegalStateException("Node has no executor and sub-nodes.");
         }
@@ -118,20 +117,20 @@ public abstract class CommandNode
         return _parsedDataKey;
     }
 
-    public void AddParsedData(Object value, HashMap<String, Object> parsedData)
+    public void AddParsedData(Object value, CommandData data)
     {
         if (_parsedDataKey != null)
         {
-            parsedData.put(_parsedDataKey, value);
+            data.AddParsedData(_parsedDataKey, value);
         }
     }
 
 
     // Private methods.
     /* Parsing. */
-    private void TryPassExecuteToNextNode(CommandData data, HashMap<String, Object> parsedData)
+    private void TryPassExecuteToNextNode(CommandData data)
     {
-        if (_subNodes.size() == 0)
+        if (_subNodes.isEmpty())
         {
             data.SetStatus(CommandStatus.Unsuccessful);
             data.SetFeedback("Trailing command arguments: \"%s\"".formatted(
@@ -142,7 +141,7 @@ public abstract class CommandNode
         int SavedIndex = data.GetIndex();
         for (CommandNode SubNode : _subNodes)
         {
-            if (SubNode.ExecuteCommand(data, parsedData))
+            if (SubNode.ExecuteCommand(data))
             {
                 return;
             }
@@ -152,12 +151,12 @@ public abstract class CommandNode
         TellExecuteError(data);
     }
 
-    private void TryPassTabToNextNode(CommandData data, HashMap<String, Object> parsedData)
+    private void TryPassTabToNextNode(CommandData data)
     {
         int SavedIndex = data.GetIndex();
         for (CommandNode SubNode : _subNodes)
         {
-            if (SubNode.TabCommand(data, parsedData))
+            if (SubNode.TabCommand(data))
             {
                 return;
             }
@@ -189,14 +188,15 @@ public abstract class CommandNode
 
         String ReasonMsg = data.GetCommand().substring(data.GetIndex()).trim().isBlank()
                 ? "Incomplete command" : "Invalid command";
-        String Feedback = "%s! Expected [%s]".formatted(ReasonMsg, String.join(" | ",  Suggestions));
+        String Feedback = "%s! %s".formatted(ReasonMsg, Suggestions.isEmpty()
+                ? "" : "Expected [%s]".formatted(String.join(" | ",  Suggestions)));
         data.SetFeedback(Feedback);
     }
 
     private void TellExecuteError(CommandData data)
     {
         data.SetStatus(CommandStatus.Unsuccessful);
-        if ((_subNodes.size() == 0) && (_executor == null))
+        if (_subNodes.isEmpty() && (_executor == null))
         {
             TellBrokenCommandError(data);
         }

@@ -1,16 +1,15 @@
-package sus.keiger.bsripoff.command;
+package sus.keiger.plugincommon.command;
 
 import org.bukkit.Location;
 import org.bukkit.World;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class LocationNode extends CoordinateNode
 {
     // Constructors.
-    public LocationNode(BiConsumer<CommandData, HashMap<String, Object>> executor, String parsedDataKey)
+    public LocationNode(Consumer<CommandData> executor, String parsedDataKey)
     {
         super(executor, 3, parsedDataKey);
     }

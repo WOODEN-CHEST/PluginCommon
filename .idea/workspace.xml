@@ -1,27 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="PluginCommon" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a17b4bd-1974-4d7a-afd2-2967e141118b" name="Changes" comment="" />
+    <list default="true" id="1a17b4bd-1974-4d7a-afd2-2967e141118b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/PluginCommon.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IEntityWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ILivingEntityWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IIDProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/DefaultTickExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/ITickExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/ITickable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/PCMath.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/BooleanNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/ColorNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/TextNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/entity/EntityFunctions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/IBasicAudience.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/ItemSearchResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/PlayerFunctions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/actionbar/ActionbarContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/actionbar/ActionbarMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/1_20.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ServerAPI.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommandNodes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PluginCommon.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/CommandData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/CommandData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/CommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/CommandNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/CommandStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/CommandStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/CoordinateNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/CoordinateNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/KeywordNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/KeywordNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/ListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/ListNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/LocationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/LocationNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/NumberNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/NumberNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/NumberNodeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/NumberNodeType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/PlayerSelectorNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/PlayerSelectorNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/RotationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/RotationNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/ServerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/ServerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/StringNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/StringNode.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2gCLsnasck2oBSgeDSb3QiGtifY" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Workstations/Programming/Java/Minecraft server API/ProtocolLib/ProtocolLib.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="sus.keiger.plugincommon.entity" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workstations\Programming\Projects\PluginCommon\src\sus\keiger\plugincommon\player" />
+      <recent name="D:\Workstations\Programming\Projects\CommandNodes\src\sus\keiger\commandnodes" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Workstations\Programming\Projects\PluginCommon" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="sus.keiger.plugincommon" />
+      <recent name="sus.keiger.plugincommon.player" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

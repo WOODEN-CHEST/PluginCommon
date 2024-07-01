@@ -1,4 +1,4 @@
-package sus.keiger.bsripoff.command;
+package sus.keiger.plugincommon.command;
 
 public enum NumberNodeType
 {
