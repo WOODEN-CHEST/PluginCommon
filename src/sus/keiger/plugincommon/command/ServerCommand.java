@@ -80,7 +80,8 @@ public class ServerCommand extends CommandNode implements TabExecutor
             Data.SetFeedback(Component.text("A critical exception occurred while executing this command. " +
                     "Please report this to an admin immediately. Error message: %s".formatted(e.getMessage()))
                     .color(NamedTextColor.RED));
-            Bukkit.getLogger().severe(e.toString());
+            Bukkit.getLogger().severe("(%s) Stack trace: %s".formatted(e.getMessage(),
+                    String.join(" ", Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).toList())));
         }
 
         if (Data.GetFeedback() != null)

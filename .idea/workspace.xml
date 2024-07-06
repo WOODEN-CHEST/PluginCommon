@@ -13,42 +13,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a17b4bd-1974-4d7a-afd2-2967e141118b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/PluginCommon.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IEntityWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ILivingEntityWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IIDProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/DefaultTickExecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/ITickExecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/ITickable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/PCMath.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/BooleanNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/ColorNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/TextNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/entity/EntityFunctions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/IBasicAudience.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/ItemSearchResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/PlayerFunctions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/actionbar/ActionbarContainer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/actionbar/ActionbarMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/1_20.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ServerAPI.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/IterationSafeList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/IterationSafeMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/IterationSafeSet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommandNodes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PluginCommon.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/CommandData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/CommandData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/CommandNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/CommandNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/CommandStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/CommandStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/CoordinateNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/CoordinateNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/KeywordNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/KeywordNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/ListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/ListNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/LocationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/LocationNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/NumberNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/NumberNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/NumberNodeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/NumberNodeType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/PlayerSelectorNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/PlayerSelectorNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/RotationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/RotationNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/ServerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/ServerCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/commandnodes/StringNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/StringNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IIDProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/IIDProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/ServerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/ServerCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
