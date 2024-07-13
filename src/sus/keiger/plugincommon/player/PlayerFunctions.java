@@ -175,6 +175,25 @@ public final class PlayerFunctions
         return true;
     }
 
+    public static boolean ReplaceItems(Player mcPlayer,
+                                            int maxItemCount,
+                                            ItemStack item,
+                                            Predicate<ItemStack> itemSearchPredicate)
+    {
+        ItemSearchResult SearchResult = FindItems(mcPlayer, itemSearchPredicate);
+
+        if ((SearchResult.GetItemCount() > maxItemCount) || SearchResult.IsEmpty())
+        {
+            return false;
+        }
+
+        for (Integer Slot : SearchResult.GetSlots())
+        {
+            SetItem(mcPlayer, Slot, item);
+        }
+        return true;
+    }
+
     public static void SetItem(Player mcPlayer, int slot, ItemStack item)
     {
         if (mcPlayer == null)

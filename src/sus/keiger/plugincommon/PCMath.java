@@ -1,5 +1,6 @@
 package sus.keiger.plugincommon;
 
+import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
 public final class PCMath
@@ -45,5 +46,12 @@ public final class PCMath
     public static boolean AreNumbersEqual(float a, float b, float marginOfError)
     {
         return Math.abs(a - b) <= marginOfError;
+    }
+
+    public static boolean AreBoundsColliding(BoundingBox a, BoundingBox b)
+    {
+        return (a.getMaxX() >= b.getMinX()) && (a.getMinX() <= b.getMaxX())
+                && (a.getMaxY() >= b.getMinY()) && (a.getMinY() <= b.getMaxY())
+                && (a.getMaxZ() >= b.getMinZ()) && (a.getMinZ() <= b.getMaxZ());
     }
 }

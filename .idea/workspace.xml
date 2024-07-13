@@ -13,12 +13,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a17b4bd-1974-4d7a-afd2-2967e141118b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/IterationSafeList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/IterationSafeMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/IterationSafeSet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IIDProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/IIDProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/ServerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/ServerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/PCMath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/PCMath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/entity/EntityFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/entity/EntityFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/PlayerFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/PlayerFunctions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
