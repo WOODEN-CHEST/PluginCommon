@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class PlayerSelectorNode extends CommandNode
 {
@@ -19,11 +20,13 @@ public class PlayerSelectorNode extends CommandNode
     // Private fields.
     private final boolean _isSpecialSelectorAllowed;
     private final int _maxSelectors;
+    private final Supplier<List<Player>> _playerSupplier;
 
 
     // Constructors.
     public PlayerSelectorNode(Consumer<CommandData> executor,
                               boolean isSpecialSelectorAllowed,
+                              Supplier<List<Player>> playerSupplier,
                               int maxSelectors,
                               String parsedDataKey)
     {
@@ -31,6 +34,7 @@ public class PlayerSelectorNode extends CommandNode
 
         _isSpecialSelectorAllowed = isSpecialSelectorAllowed;
         _maxSelectors = Math.max(1, maxSelectors);
+        _playerSupplier = playerSupplier != null ? playerSupplier : () -> List.copyOf(Bukkit.getOnlinePlayers());
     }
 
 
@@ -45,7 +49,7 @@ public class PlayerSelectorNode extends CommandNode
         if (players.size() < min)
         {
             data.SetStatus(CommandStatus.Unsuccessful);
-            data.SetFeedback(players.size() == 0 ? "No players found." : "Expected at least %d player%s, got %d"
+            data.SetFeedback(players.isEmpty() ? "No players found." : "Expected at least %d player%s, got %d"
                     .formatted(min, min != 1 ? "s" : "", players.size()));
             return false;
         }
@@ -102,8 +106,8 @@ public class PlayerSelectorNode extends CommandNode
 
     private void SelectRandomPlayer(CommandData data, List<Player> selectedPlayers)
     {
-        List<Player> Players = new ArrayList<>(Bukkit.getServer().getOnlinePlayers());
-        if (Players.size() == 0)
+        List<Player> Players = new ArrayList<>(_playerSupplier.get());
+        if (Players.isEmpty())
         {
             return;
         }
@@ -114,7 +118,7 @@ public class PlayerSelectorNode extends CommandNode
 
     private void SelectAllPlayers(CommandData data, List<Player> selectedPlayers)
     {
-        selectedPlayers.addAll(Bukkit.getServer().getOnlinePlayers());
+        selectedPlayers.addAll(_playerSupplier.get());
     }
 
     private void SelectClosestPlayer(CommandData data, List<Player> selectedPlayers)
@@ -125,7 +129,7 @@ public class PlayerSelectorNode extends CommandNode
         double CurrentDistance;
         Player ClosestPlayer = null;
 
-        for (Player MCPlayer : Bukkit.getServer().getOnlinePlayers())
+        for (Player MCPlayer : _playerSupplier.get())
         {
             CurrentDistance = SearchLocation.distance(MCPlayer.getLocation());
             if ((CurrentDistance < ClosestDistance) && (data.GetSender() != MCPlayer))
@@ -170,7 +174,7 @@ public class PlayerSelectorNode extends CommandNode
         {
             Suggestions.addAll(List.of(SELECTOR_SELF, SELECTOR_CLOSEST, SELECTOR_ALL, SELECTOR_RANDOM));
         }
-        Suggestions.addAll(Bukkit.getServer().getOnlinePlayers().stream().map(Player::getName).toList());
+        Suggestions.addAll(_playerSupplier.get().stream().map(Player::getName).toList());
         ParsePlayerSelectors(data).stream().map(Player::getName).toList().forEach(Suggestions::remove);
 
         return new ArrayList<>(Suggestions);

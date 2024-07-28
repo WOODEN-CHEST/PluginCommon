@@ -81,24 +81,12 @@ public final class PlayerFunctions
     /* Sound. */
     public static void PlayErrorSound(Player mcPlayer, boolean isPrivate)
     {
-        if (mcPlayer == null)
-        {
-            throw new IllegalArgumentException("mcPlayer is null");
-        }
+        PlayUISound(mcPlayer, Sound.UI_BUTTON_CLICK, 0.3f, 1f, isPrivate);
+    }
 
-        float Volume = 0.8f;
-        float Pitch = 0.8f;
-        SoundCategory Category = SoundCategory.PLAYERS;
-        Location TargetLocation = mcPlayer.getLocation();
-        Sound TargetSound = Sound.BLOCK_NOTE_BLOCK_DIDGERIDOO;
-
-        if (isPrivate)
-        {
-            mcPlayer.playSound(TargetLocation, TargetSound, Category, Volume, Pitch);
-        } else
-        {
-            mcPlayer.getWorld().playSound(TargetLocation, TargetSound, Category, Volume, Pitch);
-        }
+    public static void PlayClickSound(Player mcPlayer, boolean isPrivate)
+    {
+        PlayUISound(mcPlayer, Sound.BLOCK_NOTE_BLOCK_DIDGERIDOO, 0.8f, 0.8f, isPrivate);
     }
 
 
@@ -293,5 +281,25 @@ public final class PlayerFunctions
 
         SetItem(mcPlayer, slot, item);
         return true;
+    }
+
+    private static void PlayUISound(Player mcPlayer ,Sound sound, float volume, float pitch, boolean isPrivate)
+    {
+        if (mcPlayer == null)
+        {
+            throw new IllegalArgumentException("mcPlayer is null");
+        }
+
+        SoundCategory Category = SoundCategory.PLAYERS;
+        Location TargetLocation = mcPlayer.getLocation();
+
+        if (isPrivate)
+        {
+            mcPlayer.playSound(TargetLocation, sound, Category, volume, pitch);
+        }
+        else
+        {
+            mcPlayer.getWorld().playSound(TargetLocation, sound, Category, volume, pitch);
+        }
     }
 }

@@ -54,4 +54,30 @@ public final class PCMath
                 && (a.getMaxY() >= b.getMinY()) && (a.getMinY() <= b.getMaxY())
                 && (a.getMaxZ() >= b.getMinZ()) && (a.getMinZ() <= b.getMaxZ());
     }
+
+    public static int Sign(int value)
+    {
+        if (value > 0)
+        {
+            return 1;
+        }
+        else if (value < 0)
+        {
+            return - 1;
+        }
+        return 0;
+    }
+
+    public static int Sign(double value)
+    {
+        if (value > 0)
+        {
+            return 1;
+        }
+        else if (value < 0)
+        {
+            return - 1;
+        }
+        return 0;
+    }
 }

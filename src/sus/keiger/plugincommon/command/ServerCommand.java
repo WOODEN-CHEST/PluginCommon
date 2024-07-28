@@ -53,22 +53,10 @@ public class ServerCommand extends CommandNode implements TabExecutor
     }
 
 
-    // Private methods.
-    private void VerifyName(Command command)
-    {
-        if (!_label.equals(command.getName()))
-        {
-            throw new IllegalStateException("Label mismatch. Command's label is \"%s\", got \"%s\"."
-                    .formatted(_label, command.getName()));
-        }
-    }
-
-
     // Inherited methods.
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
-        VerifyName(command);
         CommandData Data = new CommandData(_label, args, sender);
         Data.MoveIndexToNextNonWhitespace();
         try
@@ -95,7 +83,6 @@ public class ServerCommand extends CommandNode implements TabExecutor
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args)
     {
-        VerifyName(command);
         CommandData Data = new CommandData(_label, args, sender);
         Data.MoveIndexToNextNonWhitespace();
         try
