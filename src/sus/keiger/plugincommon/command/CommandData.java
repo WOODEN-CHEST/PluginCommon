@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.List;
@@ -125,6 +126,15 @@ public class CommandData
     public CommandSender GetSender()
     {
         return _sender;
+    }
+
+    public Player GetPlayerSender()
+    {
+        if (_sender instanceof Player PlayerSender)
+        {
+            return PlayerSender;
+        }
+        return null;
     }
 
     public Location GetLocation()
