@@ -1,22 +1,19 @@
 package sus.keiger.plugincommon;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Consumer;
 
 /**
  * An event which can be fired, subscribed and unsubscribed from.
  * */
-public class PluginEvent<T>
+public class PCPluginEvent<T>
 {
     // Private fields.
-    private final Map<Object, List<PluginEventHandler<T>>> _handlers = new IterationSafeMap<>();
+    private final List<PluginEventHandler<T>> _handlers = new ArrayList<>();
 
 
     // Constructors.
-    public PluginEvent() { }
+    public PCPluginEvent() { }
 
 
     // Private methods.
@@ -93,13 +90,8 @@ public class PluginEvent<T>
         Objects.requireNonNull(source, "source is null");
         Objects.requireNonNull(handler, "handler is null");
 
-        if (!_handlers.containsKey(source))
-        {
-            _handlers.put(source, new ArrayList<>());
-        }
-        List<PluginEventHandler<T>> SourceHandlers = _handlers.get(source);
-        SourceHandlers.add(new PluginEventHandler<>(handler, priority));
-        SortHandlerList(SourceHandlers, 0, SourceHandlers.size() - 1);
+        _handlers.add(new PluginEventHandler<>(source, handler, priority));
+        SortHandlerList(_handlers, 0, _handlers.size() - 1);
     }
 
     /**
@@ -109,7 +101,7 @@ public class PluginEvent<T>
      * */
     public void Unsubscribe(Object source)
     {
-        _handlers.remove(Objects.requireNonNull(source));
+        _handlers.stream().filter(handler -> handler.Source.equals(source)).forEach(_handlers::remove);
     }
 
     /**
@@ -122,19 +114,9 @@ public class PluginEvent<T>
     {
         Objects.requireNonNull(source);
         Objects.requireNonNull(function);
-        if (!_handlers.containsKey(source))
-        {
-            return;
-        }
 
-        PluginEventHandler<T> TargetHandler = _handlers.get(source).stream()
-                .filter(handler -> handler.Function == function).findFirst().orElse(null);
-        if (TargetHandler != null)
-        {
-            List<PluginEventHandler<T>> SourceHandlers = _handlers.get(source);
-            SourceHandlers.remove(TargetHandler);
-            SortHandlerList(SourceHandlers, 0, SourceHandlers.size() - 1);
-        }
+        _handlers.stream().filter(handler -> (handler.Source.equals(source)) && (handler.Function.equals(function)))
+                .forEach(_handlers::remove);
     }
 
     /**
@@ -143,10 +125,16 @@ public class PluginEvent<T>
      * */
     public void FireEvent(T args)
     {
-        for (List<PluginEventHandler<T>> Handlers : _handlers.values())
-        {
-            Handlers.forEach(singleHandler -> singleHandler.Function.accept(args));
-        }
+        _handlers.forEach(singleHandler -> singleHandler.Function.accept(args));
+    }
+
+    /**
+     * Gets the amount of subscriptions to this event.
+     * @return The subscriber count.
+     */
+    public int SubscriberCount()
+    {
+        return _handlers.size();
     }
 
 
@@ -154,13 +142,15 @@ public class PluginEvent<T>
     private static class PluginEventHandler<T>
     {
         // Fields.
+        public final Object Source;
         public final Consumer<T> Function;
         public final int Priority;
 
 
         // Methods.
-        public PluginEventHandler(Consumer<T> function, int priority)
+        public PluginEventHandler(Object source, Consumer<T> function, int priority)
         {
+            Source = Objects.requireNonNull(source, "source is null");
             Function = Objects.requireNonNull(function, "handler is null");
             Priority = priority;
         }

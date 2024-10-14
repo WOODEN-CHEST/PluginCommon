@@ -71,6 +71,11 @@ public final class PlayerFunctions
     public static final int CRAFTING_SLOT_R2C2 = 4;
 
 
+    /* Other constants. */
+    public static final float MAX_SATURATION = 20f;
+    public static final int MAX_FOOD = 20;
+
+
     // Constructors.
     private PlayerFunctions()
     {

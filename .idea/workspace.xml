@@ -13,11 +13,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a17b4bd-1974-4d7a-afd2-2967e141118b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/DoubleRangeNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/IntRangeNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/RangeNodeFloatResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/RangeNodeIntResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/GamePacket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/GamePacketEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/IGamePacketController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/PCGamePacketController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/UninitializedPacketException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/ClientBoundGamePacket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/PacketPlayerInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/PlayerInfoRemovePacket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/PlayerInfoUpdatePacket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/SetHealthPacket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/UnloadChunkPacket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/serverbound/ServerBoundGamePacket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/value/GameModifiableValue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/value/GameModifiableValueModifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/value/GameModifiableValueOperator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/value/GameStackableValue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/PluginEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/PCPluginEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/PlayerFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/PlayerFunctions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +69,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Workstations/Programming/Projects/PluginCommon/src/sus/keiger/plugincommon&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Workstations/Programming/Projects/PluginCommon/src/sus/keiger/plugincommon/value&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -68,6 +82,7 @@
       <recent name="sus.keiger.plugincommon.entity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workstations\Programming\Projects\PluginCommon\src\sus\keiger\plugincommon\value" />
       <recent name="D:\Workstations\Programming\Projects\PluginCommon\src\sus\keiger\plugincommon" />
       <recent name="D:\Workstations\Programming\Projects\PluginCommon\src\sus\keiger\plugincommon\player" />
       <recent name="D:\Workstations\Programming\Projects\CommandNodes\src\sus\keiger\commandnodes" />
@@ -76,6 +91,7 @@
       <recent name="D:\Workstations\Programming\Projects\PluginCommon" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="sus.keiger.plugincommon.value" />
       <recent name="sus.keiger.plugincommon.command" />
       <recent name="sus.keiger.plugincommon" />
       <recent name="sus.keiger.plugincommon.player" />
