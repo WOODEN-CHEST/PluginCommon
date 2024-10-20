@@ -40,15 +40,16 @@ public class KeywordNode extends CommandNode
     @Override
     public List<String> GetSelfSuggestions(CommandData data)
     {
-        return Collections.singletonList(_keyword);
+        return Collections.singletonList(_keyword.contains(" ") ? "\"%s\"".formatted(_keyword) : _keyword);
     }
 
     @Override
     public boolean ParseCommand(CommandData data)
     {
         data.MoveIndexToNextNonWhitespace();
-        String Keyword = data.ReadWord();
-        if (Keyword.equals(_keyword))
+        String Keyword = data.IsMoreDataAvailable() && data.GetCommand().charAt(data.GetIndex()) == StringNode.QUOTE ?
+                StringNode.ParseQuotedString(data) : data.ReadWord();
+        if (_keyword.equals(Keyword))
         {
             AddParsedData(Keyword, data);
             return true;

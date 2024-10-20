@@ -273,6 +273,15 @@ public final class PlayerFunctions
         EntityFunctions.ResetAttribute(mcPlayer, Attribute.PLAYER_BLOCK_INTERACTION_RANGE, 4.5d);
         EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_STEP_HEIGHT, 0.6d);
         EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_JUMP_STRENGTH, 0.42d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_WATER_MOVEMENT_EFFICIENCY, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.PLAYER_SWEEPING_DAMAGE_RATIO, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.PLAYER_SUBMERGED_MINING_SPEED, 0.2d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.PLAYER_SNEAKING_SPEED, 0.2d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_MOVEMENT_EFFICIENCY, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.PLAYER_MINING_EFFICIENCY, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_EXPLOSION_KNOCKBACK_RESISTANCE, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_WATER_MOVEMENT_EFFICIENCY, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_BURNING_TIME, 1d);
     }
 
 

@@ -3,10 +3,11 @@ package sus.keiger.plugincommon.player.actionbar;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.apache.commons.lang.NullArgumentException;
+import sus.keiger.plugincommon.ITickable;
 
 import java.util.Random;
 
-public class ActionbarMessage
+public class ActionbarMessage implements ITickable
 {
     // Private fields.
     private final long _id;
@@ -39,12 +40,6 @@ public class ActionbarMessage
         return _id;
     }
 
-    public boolean Tick()
-    {
-        _ticksLeft--;
-        return _ticksLeft < 0;
-    }
-
     public void SetContents(TextComponent contents)
     {
         if (contents == null)
@@ -70,7 +65,6 @@ public class ActionbarMessage
         return _ticksLeft;
     }
 
-
     // Inherited methods.
     @Override
     public String toString()
@@ -92,5 +86,11 @@ public class ActionbarMessage
     public int hashCode()
     {
         return (int)_id;
+    }
+
+    @Override
+    public void Tick()
+    {
+        _ticksLeft--;;
     }
 }

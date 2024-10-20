@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 public class PCPluginEvent<T>
 {
     // Private fields.
-    private final List<PluginEventHandler<T>> _handlers = new ArrayList<>();
+    private final List<PluginEventHandler<T>> _handlers = new IterationSafeList<>();
 
 
     // Constructors.

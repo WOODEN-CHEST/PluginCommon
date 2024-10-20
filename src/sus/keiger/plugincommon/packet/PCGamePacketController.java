@@ -19,8 +19,9 @@ public class PCGamePacketController implements IGamePacketController, PacketList
     private final Map<PacketType, Consumer<PacketEvent>> _packetEventPropagators = new HashMap<>();
 
     private final ListeningWhitelist _sendingWhitelist = ListeningWhitelist.newBuilder().types(
-            PacketType.Play.Server.UPDATE_HEALTH
-            ).normal().build();
+            PacketType.Play.Server.UPDATE_HEALTH,
+            PacketType.Play.Server.PLAYER_INFO,
+            PacketType.Play.Server.PLAYER_INFO_REMOVE).normal().build();
 
     private final ListeningWhitelist _receivingWhitelist = ListeningWhitelist.newBuilder().types().build();
 
@@ -165,6 +166,18 @@ public class PCGamePacketController implements IGamePacketController, PacketList
     public PCPluginEvent<GamePacketEvent<SetHealthPacket>> GetSetHealthPacketEvent()
     {
         return _setHealthPacketEvent;
+    }
+
+    @Override
+    public PCPluginEvent<GamePacketEvent<PlayerInfoUpdatePacket>> GetPlayerInfoUpdatePacketEvent()
+    {
+        return _playerInfoUpdatePacketEvent;
+    }
+
+    @Override
+    public PCPluginEvent<GamePacketEvent<PlayerInfoRemovePacket>> GetPlayerInfoRemovePacketEvent()
+    {
+        return _playerInfoRemovePacketEvent;
     }
 
     @Override

@@ -37,11 +37,27 @@ public class PlayerInfoUpdatePacket extends ClientBoundGamePacket
         _actions = Set.copyOf(packet.getPlayerInfoActions().read(0));
         _playerInfo = packet.getPlayerInfoDataLists().read(1).stream().map(packetData ->
         {
+
+            String Name = packetData.getProfile().getName();
+            int Ping = packetData.getLatency();
+            EnumWrappers.NativeGameMode GameMode = packetData.getGameMode();
+            WrappedChatComponent TabName = packetData.getDisplayName();
+
             PacketPlayerInfo Info = new PacketPlayerInfo(Bukkit.getPlayer(packetData.getProfileId()));
-            Info.SetPing(packetData.getLatency());
-            Info.SetGameMode(packetData.getGameMode().toBukkit());
-            Info.SetPlayerName(packetData.getProfile().getName());
-            Info.SetTabName(JSONComponentSerializer.json().deserialize(packetData.getDisplayName().getJson()));
+            if (Name != null)
+            {
+                Info.SetPlayerName(Name);
+            }
+            Info.SetPing(Ping);
+            if (GameMode != null)
+            {
+                Info.SetGameMode(GameMode.toBukkit());
+            }
+            if (TabName != null)
+            {
+                Info.SetTabName(JSONComponentSerializer.json().deserialize(TabName.getJson()));
+            }
+
             return Info;
         }).toList();
     }
