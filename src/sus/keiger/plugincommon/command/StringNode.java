@@ -102,7 +102,7 @@ public class StringNode extends CommandNode
             return false;
         }
 
-        AddParsedData(data.GetCommand().substring(data.GetIndex()), data);
+        AddParsedData(data.ReadWord(), data);
         return true;
     }
 

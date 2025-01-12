@@ -66,8 +66,17 @@ public class ActionbarContainer
             return;
         }
 
-        _actionbarMessages.add(message);
         _actionbarChanged = true;
+        for (int i = 0; i < _actionbarMessages.size(); i++)
+        {
+            if (_actionbarMessages.get(i).GetID() == message.GetID())
+            {
+                _actionbarMessages.set(i, message);
+                return;
+            }
+        }
+
+        _actionbarMessages.add(message);
     }
 
     public void RemoveMessage(long id)

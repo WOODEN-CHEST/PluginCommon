@@ -7,6 +7,7 @@ public final class PCMath
 {
     // Fields.
     public static final int TICKS_IN_SECOND = 20;
+    public static final double HEALTH_IN_HEART = 2d;
 
 
     // Static functions.
@@ -35,7 +36,12 @@ public final class PCMath
 
     public static double HealthToHearts(double health)
     {
-        return health * 0.5d;
+        return health / HEALTH_IN_HEART;
+    }
+
+    public static double HeartsToHealth(double hearts)
+    {
+        return hearts * HEALTH_IN_HEART;
     }
 
     public static boolean AreNumbersEqual(double a, double b, double marginOfError)

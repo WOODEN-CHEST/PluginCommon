@@ -3,13 +3,11 @@ package sus.keiger.plugincommon.player;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 import sus.keiger.plugincommon.entity.EntityFunctions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -74,6 +72,9 @@ public final class PlayerFunctions
     /* Other constants. */
     public static final float MAX_SATURATION = 20f;
     public static final int MAX_FOOD = 20;
+    public static final double DEFAULT_HEALTH = 20d;
+
+    public static final String PROFILE_KEY_TEXTURES = "textures";
 
 
     // Constructors.

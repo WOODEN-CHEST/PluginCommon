@@ -7,10 +7,9 @@ import com.comphenix.protocol.wrappers.*;
 import net.kyori.adventure.text.serializer.json.JSONComponentSerializer;
 import org.bukkit.Bukkit;
 import sus.keiger.plugincommon.packet.UninitializedPacketException;
+import sus.keiger.plugincommon.player.PlayerFunctions;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class PlayerInfoUpdatePacket extends ClientBoundGamePacket
 {
@@ -37,16 +36,15 @@ public class PlayerInfoUpdatePacket extends ClientBoundGamePacket
         _actions = Set.copyOf(packet.getPlayerInfoActions().read(0));
         _playerInfo = packet.getPlayerInfoDataLists().read(1).stream().map(packetData ->
         {
-
             String Name = packetData.getProfile().getName();
             int Ping = packetData.getLatency();
             EnumWrappers.NativeGameMode GameMode = packetData.getGameMode();
             WrappedChatComponent TabName = packetData.getDisplayName();
-
             PacketPlayerInfo Info = new PacketPlayerInfo(Bukkit.getPlayer(packetData.getProfileId()));
+            WrappedGameProfile Profile = packetData.getProfile();
             if (Name != null)
             {
-                Info.SetPlayerName(Name);
+                Info.SetName(Name);
             }
             Info.SetPing(Ping);
             if (GameMode != null)
@@ -56,6 +54,14 @@ public class PlayerInfoUpdatePacket extends ClientBoundGamePacket
             if (TabName != null)
             {
                 Info.SetTabName(JSONComponentSerializer.json().deserialize(TabName.getJson()));
+            }
+            if ((Profile != null) && !Profile.getProperties()
+                    .get(PlayerFunctions.PROFILE_KEY_TEXTURES).isEmpty())
+            {
+                Profile.getProperties().get(PlayerFunctions.PROFILE_KEY_TEXTURES)
+                                .stream().filter(property -> property.getName()
+                                .equals(PlayerFunctions.PROFILE_KEY_TEXTURES)).findFirst()
+                        .ifPresent(property -> Info.SetTexture(property.getValue(), property.getSignature()));
             }
 
             return Info;
@@ -102,11 +108,19 @@ public class PlayerInfoUpdatePacket extends ClientBoundGamePacket
         PacketContainer Packet = protocolManager.createPacket(PacketType.Play.Server.PLAYER_INFO);
 
         Packet.getPlayerInfoActions().write(0, _actions);
-        Packet.getPlayerInfoDataLists().write(1, _playerInfo.stream().map(info -> new PlayerInfoData(
-                WrappedGameProfile.fromPlayer(info.GetPlayer()).withName(info.GetPlayerName()), info.GetPing(),
-                EnumWrappers.NativeGameMode.fromBukkit(info.GetGameMode()),
-                WrappedChatComponent.fromJson(JSONComponentSerializer.json().serialize(info.GetTabName()))))
-                .toList());
+        Packet.getPlayerInfoDataLists().write(1, _playerInfo.stream().map(info ->
+        {
+            PlayerInfoData InfoData = new PlayerInfoData(
+                    WrappedGameProfile.fromPlayer(info.GetPlayer()).withName(info.GetName()), info.GetPing(),
+                    EnumWrappers.NativeGameMode.fromBukkit(info.GetGameMode()),
+                    WrappedChatComponent.fromJson(JSONComponentSerializer.json().serialize(info.GetTabName())));
+
+            InfoData.getProfile().getProperties().replaceValues(PlayerFunctions.PROFILE_KEY_TEXTURES,
+                    List.of(new WrappedSignedProperty(PlayerFunctions.PROFILE_KEY_TEXTURES,
+                            info.GetTexture().getValue(), info.GetTexture().getSignature())));
+
+            return InfoData;
+        }).toList());
 
         return Packet;
     }
