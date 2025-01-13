@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="ProtocolLib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../Java/Minecraft server API/ProtocolLib/ProtocolLib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Plugin Data/dependencies/ProtocolLib.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

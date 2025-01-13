@@ -258,31 +258,30 @@ public final class PlayerFunctions
     /* Attributes. */
     public static void ResetAttributes(Player mcPlayer)
     {
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_MAX_HEALTH, 20d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_MOVEMENT_SPEED, 0.1d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_LUCK, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_ATTACK_DAMAGE, 1d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_ATTACK_SPEED, 4d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_FALL_DAMAGE_MULTIPLIER, 1d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_GRAVITY, 0.08d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_SCALE, 1d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_SAFE_FALL_DISTANCE, 3d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_ARMOR, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_ARMOR_TOUGHNESS, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.PLAYER_BLOCK_BREAK_SPEED, 1d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.PLAYER_ENTITY_INTERACTION_RANGE, 3d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.PLAYER_BLOCK_INTERACTION_RANGE, 4.5d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_STEP_HEIGHT, 0.6d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_JUMP_STRENGTH, 0.42d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_WATER_MOVEMENT_EFFICIENCY, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.PLAYER_SWEEPING_DAMAGE_RATIO, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.PLAYER_SUBMERGED_MINING_SPEED, 0.2d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.PLAYER_SNEAKING_SPEED, 0.2d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_MOVEMENT_EFFICIENCY, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.PLAYER_MINING_EFFICIENCY, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_EXPLOSION_KNOCKBACK_RESISTANCE, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_WATER_MOVEMENT_EFFICIENCY, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GENERIC_BURNING_TIME, 1d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.MAX_HEALTH, 20d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.MOVEMENT_SPEED, 0.1d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.LUCK, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.ATTACK_DAMAGE, 1d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.ATTACK_SPEED, 4d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.FALL_DAMAGE_MULTIPLIER, 1d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GRAVITY, 0.08d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.SCALE, 1d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.SAFE_FALL_DISTANCE, 3d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.ARMOR, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.ARMOR_TOUGHNESS, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.BLOCK_BREAK_SPEED, 1d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.ENTITY_INTERACTION_RANGE, 3d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.BLOCK_INTERACTION_RANGE, 4.5d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.STEP_HEIGHT, 0.6d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.JUMP_STRENGTH, 0.42d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.WATER_MOVEMENT_EFFICIENCY, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.SWEEPING_DAMAGE_RATIO, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.SUBMERGED_MINING_SPEED, 0.2d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.SNEAKING_SPEED, 0.2d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.MOVEMENT_EFFICIENCY, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.MINING_EFFICIENCY, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.EXPLOSION_KNOCKBACK_RESISTANCE, 0d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.BURNING_TIME, 1d);
     }
 
 

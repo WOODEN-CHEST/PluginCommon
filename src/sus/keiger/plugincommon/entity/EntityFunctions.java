@@ -36,7 +36,7 @@ public final class EntityFunctions
 
     public static boolean SetHealthPortion(LivingEntity entity, double portion)
     {
-        AttributeInstance HealthAttribute = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+        AttributeInstance HealthAttribute = entity.getAttribute(Attribute.MAX_HEALTH);
         if (HealthAttribute == null)
         {
             return false;
@@ -48,7 +48,7 @@ public final class EntityFunctions
 
     public static boolean SetHealthAbsolute(LivingEntity entity, double health)
     {
-        AttributeInstance HealthAttribute = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+        AttributeInstance HealthAttribute = entity.getAttribute(Attribute.MAX_HEALTH);
         if (HealthAttribute == null)
         {
             return false;
