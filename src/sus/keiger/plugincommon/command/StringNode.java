@@ -1,6 +1,7 @@
 package sus.keiger.plugincommon.command;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -86,6 +87,15 @@ public class StringNode extends CommandNode
         }
     }
 
+    private String FormatStringQuotes(String str)
+    {
+        if (_requireQuotes || str.contains(" "))
+        {
+            return "\"%s\"".formatted(str);
+        }
+        return str;
+    }
+
 
     // Inherited methods./
     @Override
@@ -109,6 +119,11 @@ public class StringNode extends CommandNode
     @Override
     public List<String> GetSelfSuggestions(CommandData data)
     {
-        return _suggestionSupplier != null ? _suggestionSupplier.apply(data) : new ArrayList<>();
+        if (_suggestionSupplier == null)
+        {
+            return Collections.emptyList();
+        }
+
+        return _suggestionSupplier.apply(data).stream().map(this::FormatStringQuotes).toList();
     }
 }

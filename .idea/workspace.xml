@@ -13,10 +13,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a17b4bd-1974-4d7a-afd2-2967e141118b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/NamespacedKeyNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/PluginCommon.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/PluginCommon.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ProtocolLib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ProtocolLib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/api.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/guava_33_4_0_jre.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/guava_33_4_0_jre.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/SequentialIDProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/SequentialIDProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PluginCommon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PluginCommon.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/StringNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/StringNode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +38,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;WOODEN-CHEST&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/WOODEN-CHEST/PluginCommon.git&quot;,
+    &quot;accountId&quot;: &quot;cd4bd2d1-6399-49b4-b526-937c16153320&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -56,8 +72,8 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/cerna/Documents/Github/Plugin Data/dependencies/guava-33.4.0-jre.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/wooden_chest/Workstations/Java/Server api/API/1.21.3&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.20229885&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
