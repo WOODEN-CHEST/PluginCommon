@@ -56,9 +56,22 @@ public final class PCMath
 
     public static boolean AreBoundsColliding(BoundingBox a, BoundingBox b)
     {
-        return (a.getMaxX() >= b.getMinX()) && (a.getMinX() <= b.getMaxX())
-                && (a.getMaxY() >= b.getMinY()) && (a.getMinY() <= b.getMaxY())
-                && (a.getMaxZ() >= b.getMinZ()) && (a.getMinZ() <= b.getMaxZ());
+        return (a.getMaxX() >= b.getMinX())
+                && (a.getMinX() <= b.getMaxX())
+                && (a.getMaxY() >= b.getMinY())
+                && (a.getMinY() <= b.getMaxY())
+                && (a.getMaxZ() >= b.getMinZ())
+                && (a.getMinZ() <= b.getMaxZ());
+    }
+
+    public static boolean AreBoundsColliding(BoundingBox a, BoundingBox b, double marginOfError)
+    {
+        return (a.getMaxX() + marginOfError >= b.getMinX() - marginOfError)
+                && (a.getMinX() - marginOfError <= b.getMaxX() + marginOfError)
+                && (a.getMaxY() + marginOfError >= b.getMinY() - marginOfError)
+                && (a.getMinY() - marginOfError <= b.getMaxY() + marginOfError)
+                && (a.getMaxZ() + marginOfError >= b.getMinZ() - marginOfError)
+                && (a.getMinZ() - marginOfError <= b.getMaxZ() + marginOfError);
     }
 
     public static int Sign(int value)

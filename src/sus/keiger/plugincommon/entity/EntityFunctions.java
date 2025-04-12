@@ -70,6 +70,7 @@ public final class EntityFunctions
         int MaxZ = (int)Math.floor(EntityBounds.getMaxZ());
 
 
+        double MARGIN_OF_ERROR = 0.00025d;
         for (int x = MinX; x <= MaxX; x++)
         {
             for (int y = MinY; y <= MaxY; y++)
@@ -80,8 +81,7 @@ public final class EntityFunctions
                     for (BoundingBox BlockCollisionBounds : TargetBlock.getCollisionShape().getBoundingBoxes())
                     {
                         BoundingBox RealBlockBounds = BlockCollisionBounds.shift(x, y, z);
-                        if (RealBlockBounds.getMaxY() <= EntityBounds.getMinY()
-                                && PCMath.AreBoundsColliding(EntityBounds, RealBlockBounds))
+                        if (PCMath.AreBoundsColliding(EntityBounds, RealBlockBounds, MARGIN_OF_ERROR))
                         {
                             return true;
                         }

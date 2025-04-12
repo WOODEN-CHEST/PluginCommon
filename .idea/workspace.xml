@@ -12,15 +12,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a17b4bd-1974-4d7a-afd2-2967e141118b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/NamespacedKeyNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/PluginCommon.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/PluginCommon.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ProtocolLib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ProtocolLib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/api.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/guava_33_4_0_jre.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/guava_33_4_0_jre.xml" afterDir="false" />
+    <list default="true" id="1a17b4bd-1974-4d7a-afd2-2967e141118b" name="Changes" comment="Updated string command node, created NamespacedKeyNode.">
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/AttributeInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/UpdateAttributePacket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/serverbound/RenameItemPacket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PluginCommon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PluginCommon.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/StringNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/StringNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/DefaultTickExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/DefaultTickExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/ITickExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/ITickExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/PCMath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/PCMath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/PCString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/PCString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/PlayerSelectorNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/PlayerSelectorNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/entity/EntityFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/entity/EntityFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/item/ItemFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/item/ItemFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/IGamePacketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/IGamePacketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/PCGamePacketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/PCGamePacketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/SetEntityMetaDataPacket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/PlayerFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/PlayerFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/actionbar/ActionbarContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/actionbar/ActionbarContainer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,8 +80,8 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/wooden_chest/Workstations/Java/Server api/API/1.21.3&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/wooden_chest/Workstations/Java/Server api/API/1.21.4&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.20229885&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
@@ -118,7 +126,20 @@
       <option name="presentableId" value="Default" />
       <updated>1715196824230</updated>
     </task>
+    <task id="LOCAL-00001" summary="Updated string command node, created NamespacedKeyNode.">
+      <option name="closed" value="true" />
+      <created>1738140706220</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738140706220</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated string command node, created NamespacedKeyNode." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated string command node, created NamespacedKeyNode." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

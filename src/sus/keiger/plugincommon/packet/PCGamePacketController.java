@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import sus.keiger.plugincommon.PCPluginEvent;
 import sus.keiger.plugincommon.packet.clientbound.*;
+import sus.keiger.plugincommon.packet.serverbound.RenameItemPacket;
 import sus.keiger.plugincommon.packet.serverbound.ServerBoundGamePacket;
 
 import java.util.*;
@@ -31,6 +32,8 @@ public class PCGamePacketController implements IGamePacketController, PacketList
     private final PCPluginEvent<GamePacketEvent<? extends GamePacket>> _packetSendEvent = new PCPluginEvent<>();
     private final PCPluginEvent<GamePacketEvent<? extends GamePacket>> _packetReceiveEvent = new PCPluginEvent<>();
 
+
+    /* Client-bound. */
     private final PCPluginEvent<GamePacketEvent<SetHealthPacket>>
             _setHealthPacketEvent = new PCPluginEvent<>();
     private final PCPluginEvent<GamePacketEvent<PlayerInfoUpdatePacket>>
@@ -39,6 +42,14 @@ public class PCGamePacketController implements IGamePacketController, PacketList
             _playerInfoRemovePacketEvent = new PCPluginEvent<>();
     private final PCPluginEvent<GamePacketEvent<UnloadChunkPacket>>
             _unloadChunkPacketEvent = new PCPluginEvent<>();
+
+    private final PCPluginEvent<GamePacketEvent<UpdateAttributePacket>>
+            _updateAttributePacket = new PCPluginEvent<>();
+
+
+    /* Server-bound. */
+    private final PCPluginEvent<GamePacketEvent<RenameItemPacket>>
+            _renameItemEvent = new PCPluginEvent<>();
 
 
     // Constructors.
@@ -51,6 +62,8 @@ public class PCGamePacketController implements IGamePacketController, PacketList
         _packetEventPropagators.put(PacketType.Play.Server.PLAYER_INFO, this::OnPlayerInfoUpdateSending);
         _packetEventPropagators.put(PacketType.Play.Server.PLAYER_INFO_REMOVE, this::OnPlayerInfoRemoveSending);
         _packetEventPropagators.put(PacketType.Play.Server.UNLOAD_CHUNK, this::OnUnloadChunkSending);
+
+        _packetEventPropagators.put(PacketType.Play.Client.ITEM_NAME, this::OnItemRenamePacketReceiving);
     }
 
 
@@ -102,10 +115,17 @@ public class PCGamePacketController implements IGamePacketController, PacketList
                 new PlayerInfoRemovePacket(event.getPacket()));
     }
 
+
     private void OnUnloadChunkSending(PacketEvent event)
     {
         FirePacketEvent(event, _packetSendEvent, _unloadChunkPacketEvent,
                 new UnloadChunkPacket(event.getPacket()));
+    }
+
+    private void OnItemRenamePacketReceiving(PacketEvent event)
+    {
+        FirePacketEvent(event, _packetReceiveEvent, _renameItemEvent,
+                new RenameItemPacket(event.getPacket()));
     }
 
 
@@ -178,6 +198,18 @@ public class PCGamePacketController implements IGamePacketController, PacketList
     public PCPluginEvent<GamePacketEvent<PlayerInfoRemovePacket>> GetPlayerInfoRemovePacketEvent()
     {
         return _playerInfoRemovePacketEvent;
+    }
+
+    @Override
+    public PCPluginEvent<GamePacketEvent<UpdateAttributePacket>> GetUpdateAttributesPacketEvent()
+    {
+        return _updateAttributePacket;
+    }
+
+    @Override
+    public PCPluginEvent<GamePacketEvent<RenameItemPacket>> GetRenameItemPacketEvent()
+    {
+        return _renameItemEvent;
     }
 
     @Override

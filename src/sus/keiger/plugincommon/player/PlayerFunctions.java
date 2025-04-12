@@ -5,10 +5,12 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import sus.keiger.plugincommon.entity.EntityFunctions;
+import sus.keiger.plugincommon.item.ItemFunctions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 public final class PlayerFunctions
@@ -78,19 +80,17 @@ public final class PlayerFunctions
 
 
     // Constructors.
-    private PlayerFunctions()
-    {
-    }
+    private PlayerFunctions() { }
 
 
     // Static functions.
     /* Sound. */
-    public static void PlayErrorSound(Player mcPlayer, boolean isPrivate)
+    public static void PlayClickSound(Player mcPlayer, boolean isPrivate)
     {
         PlayUISound(mcPlayer, Sound.UI_BUTTON_CLICK, 0.3f, 1f, isPrivate);
     }
 
-    public static void PlayClickSound(Player mcPlayer, boolean isPrivate)
+    public static void PlayErrorSound(Player mcPlayer, boolean isPrivate)
     {
         PlayUISound(mcPlayer, Sound.BLOCK_NOTE_BLOCK_DIDGERIDOO, 0.8f, 0.8f, isPrivate);
     }
@@ -99,10 +99,7 @@ public final class PlayerFunctions
     /* Attacks. */
     public static boolean IsAttackCritical(Player mcPlayer)
     {
-        if (mcPlayer == null)
-        {
-            throw new IllegalArgumentException("mcPlayer is null");
-        }
+        Objects.requireNonNull(mcPlayer, "mcPlayer is null");
 
         return (mcPlayer.getFallDistance() > 0f) && !mcPlayer.isSprinting()
                 && (mcPlayer.getAttackCooldown() >= 0.9f);
@@ -110,26 +107,11 @@ public final class PlayerFunctions
 
 
     /* Inventory. */
-    public static boolean IsItemEmpty(ItemStack item)
-    {
-        return (item == null) || (item.equals(ItemStack.empty()));
-    }
-
-    public static ItemStack ItemOrNull(ItemStack item)
-    {
-        return IsItemEmpty(item) ? null : item;
-    }
-
     public static ItemSearchResult FindItems(Player mcPlayer, Predicate<ItemStack> predicate)
     {
-        if (mcPlayer == null)
-        {
-            throw new IllegalArgumentException("mcPlayer is null");
-        }
-        if (predicate == null)
-        {
-            throw new IllegalArgumentException("mcPlayer is null");
-        }
+        Objects.requireNonNull(mcPlayer, "mcPlayer is null");
+        Objects.requireNonNull(predicate, "predicate is null");
+
         List<ItemStack> FoundItems = new ArrayList<>();
         List<Integer> FoundItemSlots = new ArrayList<>();
 
@@ -149,30 +131,38 @@ public final class PlayerFunctions
                                             int maxItemCount,
                                             ItemStack item,
                                             int slot,
-                                            Predicate<ItemStack> itemSearchPredicate)
+                                            Predicate<ItemStack> itemSearchPredicate,
+                                            boolean addIfSlotOccupied)
     {
         ItemSearchResult SearchResult = FindItems(mcPlayer, itemSearchPredicate);
 
-        if (SearchResult.GetItemCount() > maxItemCount)
-        {
-            return false;
-        }
         if (SearchResult.IsEmpty())
         {
-            return TrySetOrAddItem(item, slot, mcPlayer);
+            if (addIfSlotOccupied)
+            {
+                return TrySetOrAddItem(item, slot, mcPlayer);
+            }
+            SetItem(mcPlayer, slot, item);
+            return true;
         }
 
+        int ItemsReplaced = 0;
         for (Integer Slot : SearchResult.GetSlots())
         {
+            if (ItemsReplaced > maxItemCount)
+            {
+                return false;
+            }
             SetItem(mcPlayer, Slot, item);
+            ItemsReplaced++;
         }
         return true;
     }
 
     public static boolean ReplaceItems(Player mcPlayer,
-                                            int maxItemCount,
-                                            ItemStack item,
-                                            Predicate<ItemStack> itemSearchPredicate)
+                                       int maxItemCount,
+                                       ItemStack item,
+                                       Predicate<ItemStack> itemSearchPredicate)
     {
         ItemSearchResult SearchResult = FindItems(mcPlayer, itemSearchPredicate);
 
@@ -190,10 +180,7 @@ public final class PlayerFunctions
 
     public static void SetItem(Player mcPlayer, int slot, ItemStack item)
     {
-        if (mcPlayer == null)
-        {
-            throw new IllegalArgumentException("mcPlayer is null");
-        }
+        Objects.requireNonNull(mcPlayer, "mcPlayer is null");
 
         if (slot == SLOT_CURSOR)
         {
@@ -207,11 +194,7 @@ public final class PlayerFunctions
 
     public static ItemStack GetItem(Player mcPlayer, int slot)
     {
-        if (mcPlayer == null)
-        {
-            throw new IllegalArgumentException("mcPlayer is null");
-        }
-
+        Objects.requireNonNull(mcPlayer, "mcPlayer is null");
         ItemStack FoundItem;
 
         if (slot == SLOT_CURSOR)
@@ -220,38 +203,38 @@ public final class PlayerFunctions
             return FoundItem.equals(ItemStack.empty()) ? null : FoundItem;
         }
 
-        return ItemOrNull(mcPlayer.getInventory().getItem(slot));
+        return ItemFunctions.ItemOrNull(mcPlayer.getInventory().getItem(slot));
     }
 
     public static HashMap<Integer, ItemStack> AddItem(Player mcPlayer, ItemStack ... items)
     {
-        if (mcPlayer == null)
-        {
-            throw new IllegalArgumentException("mcPlayer is null");
-        }
+        Objects.requireNonNull(mcPlayer, "mcPlayer is null");
         return mcPlayer.getInventory().addItem(items);
     }
 
-    public static int RemoveItems(Player mcPlayer, Predicate<ItemStack> predicate)
+    public static int RemoveItems(Player mcPlayer, Predicate<ItemStack> predicate, int count)
     {
         ItemSearchResult SearchResult = FindItems(mcPlayer, predicate);
+        List<Integer> Slots = SearchResult.GetSlots();
 
-        for (int Slot : SearchResult.GetSlots())
+        for (int i = 0; (i < Slots.size()) && (i < count); i++)
         {
-            SetItem(mcPlayer, Slot, null);
+            SetItem(mcPlayer, Slots.get(i), null);
         }
 
-        return SearchResult.GetItemCount();
+        return Math.min(count, Slots.size());
     }
 
     public static void ClearInventory(Player mcPlayer)
     {
-        if (mcPlayer == null)
-        {
-            throw new IllegalArgumentException("mcPlayer is null");
-        }
+        Objects.requireNonNull(mcPlayer, "mcPlayer is null");
         mcPlayer.getInventory().clear();
         mcPlayer.setItemOnCursor(ItemStack.empty());
+    }
+
+    public static boolean SetOrAddItem(ItemStack item, int slot, Player mcPlayer)
+    {
+        return TrySetOrAddItem(item, slot, mcPlayer);
     }
 
 
@@ -288,7 +271,7 @@ public final class PlayerFunctions
     // Private static methods.
     private static boolean TrySetOrAddItem(ItemStack item, int slot, Player mcPlayer)
     {
-        if (GetItem(mcPlayer, slot) != null)
+        if (!ItemFunctions.IsItemEmpty(GetItem(mcPlayer, slot)))
         {
             return mcPlayer.getInventory().addItem(item).isEmpty();
         }

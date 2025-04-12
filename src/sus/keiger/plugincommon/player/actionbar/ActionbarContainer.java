@@ -86,6 +86,7 @@ public class ActionbarContainer
             if (_actionbarMessages.get(i).GetID() == id)
             {
                 _actionbarMessages.remove(i);
+                _actionbarChanged = true;
                 return;
             }
         }
@@ -94,6 +95,7 @@ public class ActionbarContainer
     public void ClearMessages()
     {
         _actionbarMessages.clear();
+        _actionbarChanged = true;
     }
 
 

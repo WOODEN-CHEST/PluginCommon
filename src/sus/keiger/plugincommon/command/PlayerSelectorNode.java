@@ -7,7 +7,6 @@ import org.bukkit.entity.Player;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class PlayerSelectorNode extends CommandNode
 {
@@ -21,6 +20,7 @@ public class PlayerSelectorNode extends CommandNode
     // Private fields.
     private final boolean _isSpecialSelectorAllowed;
     private final int _maxSelectors;
+    private final int _maxPlayers;
     private final Function<CommandData, List<? extends Player>> _playerSupplier;
 
 
@@ -29,23 +29,25 @@ public class PlayerSelectorNode extends CommandNode
                               boolean isSpecialSelectorAllowed,
                               Function<CommandData, List<? extends Player>> playerSupplier,
                               int maxSelectors,
+                              int maxPlayers,
                               String parsedDataKey)
     {
         super(executor, parsedDataKey);
 
         _isSpecialSelectorAllowed = isSpecialSelectorAllowed;
         _maxSelectors = Math.max(1, maxSelectors);
+        _maxPlayers = Math.max(1, maxPlayers);
         _playerSupplier = playerSupplier != null ? playerSupplier : (data) -> List.copyOf(Bukkit.getOnlinePlayers());
     }
 
 
     // Static methods.
-    public static boolean EnsurePlayerCount(CommandData data, List<Player> players, int min)
+    public boolean EnsurePlayerCount(CommandData data, List<Player> players, int min)
     {
-        return EnsurePlayerCount(data, players, min, Integer.MAX_VALUE);
+        return EnsurePlayerCount(data, players, min, _maxPlayers);
     }
 
-    public static boolean EnsurePlayerCount(CommandData data, List<Player> players, int min, int max)
+    public boolean EnsurePlayerCount(CommandData data, List<Player> players, int min, int max)
     {
         if (players.size() < min)
         {
@@ -161,7 +163,7 @@ public class PlayerSelectorNode extends CommandNode
             SelectedPlayers.addAll(SelectPlayers(data, Selector));
         }
 
-        return new ArrayList<>(SelectedPlayers);
+        return List.copyOf(SelectedPlayers);
     }
 
 
@@ -184,7 +186,12 @@ public class PlayerSelectorNode extends CommandNode
     @Override
     public boolean ParseCommand(CommandData data)
     {
-        AddParsedData(ParsePlayerSelectors(data), data);
+        List<Player> Players = ParsePlayerSelectors(data);
+        if (!EnsurePlayerCount(data, Players, 1))
+        {
+            return false;
+        }
+        AddParsedData(Players, data);
         return true;
     }
 }

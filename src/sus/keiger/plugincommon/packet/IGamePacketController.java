@@ -3,10 +3,8 @@ package sus.keiger.plugincommon.packet;
 import com.comphenix.protocol.events.PacketEvent;
 import org.bukkit.entity.Player;
 import sus.keiger.plugincommon.PCPluginEvent;
-import sus.keiger.plugincommon.packet.clientbound.ClientBoundGamePacket;
-import sus.keiger.plugincommon.packet.clientbound.PlayerInfoRemovePacket;
-import sus.keiger.plugincommon.packet.clientbound.PlayerInfoUpdatePacket;
-import sus.keiger.plugincommon.packet.clientbound.SetHealthPacket;
+import sus.keiger.plugincommon.packet.clientbound.*;
+import sus.keiger.plugincommon.packet.serverbound.RenameItemPacket;
 import sus.keiger.plugincommon.packet.serverbound.ServerBoundGamePacket;
 
 import java.util.Collection;
@@ -24,7 +22,11 @@ public interface IGamePacketController
 
     PCPluginEvent<GamePacketEvent<? extends GamePacket>> GetPacketSendEvent();
     PCPluginEvent<GamePacketEvent<? extends GamePacket>> GetPacketReceiveEvent();
+
     PCPluginEvent<GamePacketEvent<SetHealthPacket>> GetSetHealthPacketEvent();
     PCPluginEvent<GamePacketEvent<PlayerInfoUpdatePacket>> GetPlayerInfoUpdatePacketEvent();
     PCPluginEvent<GamePacketEvent<PlayerInfoRemovePacket>> GetPlayerInfoRemovePacketEvent();
+    PCPluginEvent<GamePacketEvent<UpdateAttributePacket>> GetUpdateAttributesPacketEvent();
+
+    PCPluginEvent<GamePacketEvent<RenameItemPacket>> GetRenameItemPacketEvent();
 }
