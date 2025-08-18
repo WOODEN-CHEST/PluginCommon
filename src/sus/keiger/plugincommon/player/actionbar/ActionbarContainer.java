@@ -1,15 +1,11 @@
 package sus.keiger.plugincommon.player.actionbar;
 
-import io.sentry.protocol.Message;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.apache.commons.lang.NullArgumentException;
 import org.bukkit.entity.Player;
 import sus.keiger.plugincommon.IterationSafeList;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -52,10 +48,7 @@ public class ActionbarContainer
             BuildActionbarMessage();
         }
 
-        if (!_actionbarMessages.isEmpty())
-        {
-            mcPlayer.sendActionBar(_combinedActionbarMessage);
-        }
+        mcPlayer.sendActionBar(_combinedActionbarMessage);
     }
 
     public void AddMessage(ActionbarMessage message)

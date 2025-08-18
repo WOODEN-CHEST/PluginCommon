@@ -4,13 +4,11 @@ import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import sus.keiger.plugincommon.entity.EntityFunctions;
 import sus.keiger.plugincommon.item.ItemFunctions;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Predicate;
 
 public final class PlayerFunctions
@@ -235,6 +233,30 @@ public final class PlayerFunctions
     public static boolean SetOrAddItem(ItemStack item, int slot, Player mcPlayer)
     {
         return TrySetOrAddItem(item, slot, mcPlayer);
+    }
+
+    public static Integer FindLowestFreeInventorySpot(Player mcPlayer)
+    {
+        return FindLowestFreeInventorySpot(mcPlayer, Collections.emptySet());
+    }
+
+    public static Integer FindLowestFreeInventorySpot(Player mcPlayer, Set<Integer> ignoredSlots)
+    {
+        PlayerInventory TargetInventory = mcPlayer.getInventory();
+        ItemStack[] Contents = TargetInventory.getContents();
+        for (int i = 0; i < Contents.length; i++)
+        {
+            if (ItemFunctions.IsItemEmpty(Contents[i]) && !ignoredSlots.contains(i))
+            {
+                return i;
+            }
+        }
+
+        if (ItemFunctions.IsItemEmpty(mcPlayer.getItemOnCursor()) && !ignoredSlots.contains(SLOT_CURSOR))
+        {
+            return SLOT_CURSOR;
+        }
+        return null;
     }
 
 
