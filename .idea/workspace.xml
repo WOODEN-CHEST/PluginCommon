@@ -12,26 +12,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a17b4bd-1974-4d7a-afd2-2967e141118b" name="Changes" comment="changes">
+    <list default="true" id="1a17b4bd-1974-4d7a-afd2-2967e141118b" name="Changes" comment="stopped tracking intellij's project files.">
+      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/ExplainedResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/entity/EntityFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/entity/EntityFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/GamePacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/GamePacketEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/IGamePacketController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/PCGamePacketController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/UninitializedPacketException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/AttributeInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/ClientBoundGamePacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/PacketPlayerInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/PlayerInfoRemovePacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/PlayerInfoUpdatePacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/SetHealthPacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/UnloadChunkPacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/clientbound/UpdateAttributePacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/serverbound/RenameItemPacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/packet/serverbound/ServerBoundGamePacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/PlayerFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/PlayerFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/actionbar/ActionbarContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/actionbar/ActionbarContainer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,24 +55,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Test.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/wooden_chest/Workstations/Java/PluginCommonPacket",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.20229885",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Test.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/wooden_chest/Workstations/Java/PluginCommonPacket&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.20229885&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="sus.keiger.plugincommon.entity" />
@@ -144,13 +127,31 @@
       <option name="project" value="LOCAL" />
       <updated>1744467551866</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="moved out the packet related stuff into its own library">
+      <option name="closed" value="true" />
+      <created>1755536219164</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1755536219164</updated>
+    </task>
+    <task id="LOCAL-00004" summary="stopped tracking intellij's project files.">
+      <option name="closed" value="true" />
+      <created>1755536972005</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1755536972005</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updated string command node, created NamespacedKeyNode." />
     <MESSAGE value="changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes" />
+    <MESSAGE value="moved out the packet related stuff into its own library" />
+    <MESSAGE value="stopped tracking intellij's project files." />
+    <option name="LAST_COMMIT_MESSAGE" value="stopped tracking intellij's project files." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
