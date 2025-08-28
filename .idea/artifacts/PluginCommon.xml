@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="PluginCommon">
-    <output-path>$PROJECT_DIR$/out/artifacts/PluginCommon</output-path>
-    <root id="archive" name="PluginCommon.jar">
-      <element id="module-output" name="PluginCommon" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../Server api/Guava/guava-33.4.0-jre.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
