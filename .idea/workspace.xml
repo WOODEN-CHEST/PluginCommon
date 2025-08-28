@@ -12,9 +12,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a17b4bd-1974-4d7a-afd2-2967e141118b" name="Changes" comment="stopped tracking intellij's project files.">
-      <change afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/ExplainedResult.java" afterDir="false" />
+    <list default="true" id="1a17b4bd-1974-4d7a-afd2-2967e141118b" name="Changes" comment="added explained result and empty event.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/CommandData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/CommandData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/ServerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/command/ServerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/item/ItemFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/item/ItemFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/actionbar/ActionbarMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sus/keiger/plugincommon/player/actionbar/ActionbarMessage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +50,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -55,24 +61,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Test.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/wooden_chest/Workstations/Java/PluginCommonPacket&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.20229885&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Test.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/wooden_chest/Programs/IntelliJ/lib/annotations.jar",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.20229885",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="sus.keiger.plugincommon.entity" />
@@ -143,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755536972005</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added explained result and empty event.">
+      <option name="closed" value="true" />
+      <created>1755965928842</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1755965928842</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -151,7 +165,8 @@
     <MESSAGE value="changes" />
     <MESSAGE value="moved out the packet related stuff into its own library" />
     <MESSAGE value="stopped tracking intellij's project files." />
-    <option name="LAST_COMMIT_MESSAGE" value="stopped tracking intellij's project files." />
+    <MESSAGE value="added explained result and empty event." />
+    <option name="LAST_COMMIT_MESSAGE" value="added explained result and empty event." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

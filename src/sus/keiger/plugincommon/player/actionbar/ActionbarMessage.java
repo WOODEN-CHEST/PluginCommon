@@ -91,6 +91,6 @@ public class ActionbarMessage implements ITickable
     @Override
     public void Tick()
     {
-        _ticksLeft--;;
+        _ticksLeft--;
     }
 }

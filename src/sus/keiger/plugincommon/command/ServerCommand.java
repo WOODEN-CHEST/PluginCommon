@@ -11,25 +11,25 @@ import org.bukkit.command.TabExecutor;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
+import java.util.logging.Logger;
 
 
 public class ServerCommand extends CommandNode implements TabExecutor
 {
     // Private fields.
     private final String _label;
+    private final Logger _logger;
 
 
 
     // Constructors.
-    public ServerCommand(String label, Consumer<CommandData> executor)
+    public ServerCommand(String label, Consumer<CommandData> executor, Logger logger)
     {
         super(executor, null);
 
-        if (label == null)
-        {
-            throw new IllegalArgumentException();
-        }
+        Objects.requireNonNull(label, "label is null");
         if (Bukkit.getPluginCommand(label) == null)
         {
             throw new IllegalArgumentException("Command \"%s\" not found".formatted(label));
@@ -43,6 +43,7 @@ public class ServerCommand extends CommandNode implements TabExecutor
         }
 
         _label = label;
+        _logger = logger;
     }
 
 
@@ -68,14 +69,16 @@ public class ServerCommand extends CommandNode implements TabExecutor
             Data.SetFeedback(Component.text("A critical exception occurred while executing this command. " +
                     "Please report this to an admin immediately. Error message: %s".formatted(e.getMessage()))
                     .color(NamedTextColor.RED));
-            Bukkit.getLogger().severe("(%s) Stack trace: %s".formatted(e.getMessage(),
-                    String.join(" ", Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).toList())));
+
+            if (_logger != null)
+            {
+                _logger.severe("(%s) Stack trace: %s".formatted(e.getMessage(),
+                        String.join(" ", Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).toList())));
+            }
+
         }
 
-        if (Data.GetFeedback() != null)
-        {
-            sender.sendMessage(Data.GetFeedback());
-        }
+        Data.GetFeedback().ifPresent(sender::sendMessage);
 
         return true;
     }
@@ -96,8 +99,12 @@ public class ServerCommand extends CommandNode implements TabExecutor
         {
             Data.SetFeedback(Component.text("A critical exception occurred while tabbing this command. " +
                     "Please report this to an admin immediately.").color(NamedTextColor.RED));
-            Bukkit.getLogger().severe("(%s) Stack trace: %s".formatted(e.getMessage(),
-                    String.join(" ", Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).toList())));
+
+            if (_logger != null)
+            {
+                _logger.severe("(%s) Stack trace: %s".formatted(e.getMessage(),
+                        String.join(" ", Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).toList())));
+            }
         }
 
         return Data.GetRecommendations();

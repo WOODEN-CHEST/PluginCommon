@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public class CommandData
 {
@@ -80,21 +81,21 @@ public class CommandData
         _feedbackComponents = feedback;
     }
 
-    public Component GetFeedback()
+    public Optional<Component> GetFeedback()
     {
         if (_feedbackComponents != null)
         {
-            return _feedbackComponents;
+            return Optional.of(_feedbackComponents);
         }
         if (_feeedbackString != null)
         {
             NamedTextColor Color = _status == CommandStatus.Successful ?
                     NamedTextColor.WHITE : NamedTextColor.RED;
 
-            return Component.text(_feeedbackString).color(Color);
+            return Optional.of(Component.text(_feeedbackString).color(Color));
         }
 
-        return null;
+        return Optional.empty();
     }
 
 
@@ -128,13 +129,13 @@ public class CommandData
         return _sender;
     }
 
-    public Player GetPlayerSender()
+    public Optional<Player> GetPlayerSender()
     {
         if (_sender instanceof Player PlayerSender)
         {
-            return PlayerSender;
+            return Optional.of(PlayerSender);
         }
-        return null;
+        return Optional.empty();
     }
 
     public Location GetLocation()
@@ -170,17 +171,7 @@ public class CommandData
         {
             return null;
         }
-
-        try
-        {
-            return (T)TargetObject;
-        }
-        catch (ClassCastException e)
-        {
-            Bukkit.getLogger().warning("Attempted to retrieve parsed data of wrong type for command %s"
-                    .formatted(GetLabel()));
-            return null;
-        }
+        return (T)TargetObject;
     }
 
 

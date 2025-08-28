@@ -25,9 +25,14 @@ public final class ItemFunctions
         meta.addAttributeModifier(Attribute.LUCK, new AttributeModifier(
                 new NamespacedKey("pc", "hide_flag_modifier"), 0d, AttributeModifier.Operation.ADD_NUMBER));
 
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE,
-                ItemFlag.HIDE_DESTROYS, ItemFlag.HIDE_PLACED_ON, ItemFlag.HIDE_ADDITIONAL_TOOLTIP,
-                ItemFlag.HIDE_DYE, ItemFlag.HIDE_ARMOR_TRIM, ItemFlag.HIDE_STORED_ENCHANTS);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS,
+                ItemFlag.HIDE_ATTRIBUTES
+                , ItemFlag.HIDE_UNBREAKABLE,
+                ItemFlag.HIDE_DESTROYS,
+                ItemFlag.HIDE_PLACED_ON,
+                ItemFlag.HIDE_DYE,
+                ItemFlag.HIDE_ARMOR_TRIM,
+                ItemFlag.HIDE_STORED_ENCHANTS);
     }
 
     public static boolean IsItemEmpty(ItemStack item)
