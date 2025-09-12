@@ -282,7 +282,7 @@ public final class PlayerFunctions
         EntityFunctions.ResetAttribute(mcPlayer, Attribute.WATER_MOVEMENT_EFFICIENCY, 0d);
         EntityFunctions.ResetAttribute(mcPlayer, Attribute.SWEEPING_DAMAGE_RATIO, 0d);
         EntityFunctions.ResetAttribute(mcPlayer, Attribute.SUBMERGED_MINING_SPEED, 0.2d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.SNEAKING_SPEED, 0.2d);
+        EntityFunctions.ResetAttribute(mcPlayer, Attribute.SNEAKING_SPEED, 0.3d);
         EntityFunctions.ResetAttribute(mcPlayer, Attribute.MOVEMENT_EFFICIENCY, 0d);
         EntityFunctions.ResetAttribute(mcPlayer, Attribute.MINING_EFFICIENCY, 0d);
         EntityFunctions.ResetAttribute(mcPlayer, Attribute.EXPLOSION_KNOCKBACK_RESISTANCE, 0d);
