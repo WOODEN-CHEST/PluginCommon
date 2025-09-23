@@ -8,6 +8,10 @@ import java.util.function.Consumer;
  * */
 public class PCPluginEvent<T>
 {
+    // Static fields.
+    public static final int DEFAULT_PRIORITY = 0;
+
+
     // Private fields.
     private final List<PluginEventHandler<T>> _handlers = new IterationSafeList<>();
 
@@ -65,7 +69,7 @@ public class PCPluginEvent<T>
      * */
     public void Subscribe(Object source, Consumer<T> handler)
     {
-        Subscribe(source, handler, 0);
+        Subscribe(source, handler, DEFAULT_PRIORITY);
     }
 
     /**
