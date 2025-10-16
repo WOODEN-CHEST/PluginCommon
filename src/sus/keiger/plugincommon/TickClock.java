@@ -5,8 +5,12 @@ import java.util.function.Consumer;
 
 public class TickClock implements ITickable
 {
+    // Static fields.
+    public static final int TICK_RAN_OUT = -1;
+
+
     // Private fields.
-    private int _ticksLeft = -1;
+    private int _ticksLeft = TICK_RAN_OUT;
     private boolean _isRunning = false;
     private Consumer<TickClock> _tickFunction;
     private Consumer<TickClock> _handler;
