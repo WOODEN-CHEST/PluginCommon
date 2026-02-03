@@ -19,12 +19,12 @@ public class TickClock implements ITickable
     // Methods.
     public void SetTickFunction(Consumer<TickClock> function)
     {
-        _tickFunction = Objects.requireNonNull(function, "function is null");
+        _tickFunction = function;
     }
 
     public void SetHandler(Consumer<TickClock> handler)
     {
-        _handler = Objects.requireNonNull(handler, "function is null");
+        _handler = handler;
     }
 
     public boolean GetIsRunning()
