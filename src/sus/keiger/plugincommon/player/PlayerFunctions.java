@@ -68,6 +68,9 @@ public final class PlayerFunctions
     public static final int CRAFTING_SLOT_R2C1 = 3;
     public static final int CRAFTING_SLOT_R2C2 = 4;
 
+    public static final int SLOT_INVENTORY_MIN = SLOT_CURSOR;
+    public static final int SLOT_INVENTORY_MAX = SLOT_OFFHAND;
+
 
     /* Other constants. */
     public static final float MAX_SATURATION = 20f;

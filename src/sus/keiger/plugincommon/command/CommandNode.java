@@ -95,10 +95,15 @@ public abstract class CommandNode
     public void SuggestSubNodes(CommandData data)
     {
         int SavedIndex = data.GetIndex();
+        String RemainingText = data.GetCommand().substring(data.GetIndex()).trim();
         List<String> Suggestions = new ArrayList<>();
         for (CommandNode SubNode : _subNodes)
         {
-            Suggestions.addAll(SubNode.GetSelfSuggestions(data));
+            SubNode.GetSelfSuggestions(data)
+                    .stream()
+                    .filter(suggestion -> suggestion.startsWith(RemainingText))
+                    .forEach(Suggestions::add);
+
             data.SetIndex(SavedIndex);
         }
         data.SetSuggestions(Suggestions);

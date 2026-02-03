@@ -99,4 +99,19 @@ public final class PCMath
         }
         return 0;
     }
+
+    public static Vector VectorToFacingDirection(Vector vector, Vector fallback)
+    {
+        Vector WorkingVector = new Vector(vector.getX(), 0d, vector.getZ());
+        if (WorkingVector.lengthSquared() == 0.0d)
+        {
+            return fallback;
+        }
+
+        Vector Unit = new Vector(1d, 0d, 0d);
+        double Angle = Math.atan2(WorkingVector.getZ(), WorkingVector.getX());
+        final double MULTIPLIER = Math.PI / 2d;
+        double ClampedAngle = Math.round(Angle / MULTIPLIER) * MULTIPLIER;
+        return Unit.rotateAroundY(ClampedAngle);
+    }
 }
