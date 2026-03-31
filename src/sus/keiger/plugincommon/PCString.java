@@ -32,7 +32,7 @@ public class PCString
 
     public static String PossessiveForm(String word)
     {
-        return word.endsWith("s") ? word + "'" : word + "'s";
+        return word.toLowerCase().endsWith("s") ? word + "'" : word + "'s";
     }
 
     public static String ExceptionToString(Exception e)

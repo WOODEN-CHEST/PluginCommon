@@ -1,5 +1,7 @@
 package sus.keiger.plugincommon;
 
+import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
@@ -113,5 +115,59 @@ public final class PCMath
         final double MULTIPLIER = Math.PI / 2d;
         double ClampedAngle = Math.round(Angle / MULTIPLIER) * MULTIPLIER;
         return Unit.rotateAroundY(ClampedAngle);
+    }
+
+    public static boolean AreBoundsOnGround(BoundingBox bounds, World world)
+    {
+        int MinX = (int)Math.floor(bounds.getMinX());
+        int MaxX = (int)Math.floor(bounds.getMaxX());
+        int MinY = (int)Math.floor(bounds.getMinY()) - 1;
+        int MaxY = (int)Math.floor(bounds.getMinY());
+        int MinZ = (int)Math.floor(bounds.getMinZ());
+        int MaxZ = (int)Math.floor(bounds.getMaxZ());
+
+
+        double MARGIN_OF_ERROR = 0.00025d;
+        for (int x = MinX; x <= MaxX; x++)
+        {
+            for (int y = MinY; y <= MaxY; y++)
+            {
+                for (int z = MinZ; z <= MaxZ; z++)
+                {
+                    Block TargetBlock = world.getBlockAt(x, y, z);
+                    for (BoundingBox BlockCollisionBounds : TargetBlock.getCollisionShape().getBoundingBoxes())
+                    {
+                        BoundingBox RealBlockBounds = BlockCollisionBounds.shift(x, y, z);
+                        if (PCMath.AreBoundsColliding(bounds, RealBlockBounds, MARGIN_OF_ERROR))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public double GetDistanceBetweenBounds(BoundingBox a, BoundingBox b)
+    {
+        if (PCMath.AreBoundsColliding(a, b))
+        {
+            return 0d;
+        }
+
+        double XDistance = Math.min(
+                Math.abs(b.getMinX() - a.getMaxX()),
+                Math.abs(a.getMinX() - b.getMaxX()));
+
+        double YDistance = Math.min(
+                Math.abs(b.getMinY() - a.getMaxY()),
+                Math.abs(a.getMinY() - b.getMaxY()));
+
+        double ZDistance = Math.min(
+                Math.abs(b.getMinZ() - a.getMaxZ()),
+                Math.abs(a.getMinZ() - b.getMaxZ()));
+
+        return Math.sqrt((XDistance * XDistance) + (YDistance * YDistance) + (ZDistance * ZDistance));
     }
 }

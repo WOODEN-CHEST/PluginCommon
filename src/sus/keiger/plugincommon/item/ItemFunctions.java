@@ -44,4 +44,9 @@ public final class ItemFunctions
     {
         return IsItemEmpty(item) ? null : item;
     }
+
+    public static ItemStack ItemOrEmpty(ItemStack item)
+    {
+        return item == null ? ItemStack.empty() : item;
+    }
 }

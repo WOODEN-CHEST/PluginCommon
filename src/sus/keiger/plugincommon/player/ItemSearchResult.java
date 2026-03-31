@@ -4,33 +4,20 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public final class ItemSearchResult
 {
     // Fields.
-    private final HashMap<Integer, ItemStack> _items = new HashMap<>();
+    private final Map<Integer, ItemStack> _items;
 
 
     // Constructors.
-    public ItemSearchResult(List<ItemStack> foundItems, List<Integer> slots)
+    public ItemSearchResult(Map<Integer, ItemStack> foundItems)
     {
-        if (foundItems == null)
-        {
-            throw new IllegalArgumentException("foundItems is null");
-        }
-        if (slots == null)
-        {
-            throw new IllegalArgumentException("slots is null");
-        }
-        if (foundItems.size() != slots.size())
-        {
-            throw new IllegalArgumentException("Found item count not equal to slot count");
-        }
-
-        for (int i = 0; i < foundItems.size(); i++)
-        {
-            _items.put(slots.get(i), foundItems.get(i));
-        }
+        Objects.requireNonNull(foundItems, "foundItems is null");
+        _items = Map.copyOf(foundItems);
     }
 
 

@@ -6,37 +6,24 @@ public class WeightedCollection<T> implements Iterable<T>
 {
     // Private fields.
     private final List<Entry<T>> _entries = new ArrayList<>();
-    private Random _rng;
 
 
 
     // Constructors.
-    public WeightedCollection()
-    {
-        this(new Random());
-    }
-
-    public WeightedCollection(Random rng)
-    {
-        _rng = Objects.requireNonNull(rng, "rng is null");
-    }
+    public WeightedCollection() { }
 
 
 
     // Methods.
-    public void SetRNG(Random rng)
+    public T GetRandomElement(Random rng)
     {
-        _rng = Objects.requireNonNull(rng, "rng is null");
-    }
-
-    public T GetRandomElement()
-    {
+        Objects.requireNonNull(rng, "rng is null");
         if (_entries.isEmpty())
         {
             throw new NoSuchElementException("Weighted collection is empty, cannot get random element.");
         }
 
-        return _entries.get(GetElementIndex(_rng.nextDouble() * GetMaxIndex())).Value;
+        return _entries.get(GetElementIndex(rng.nextDouble() * GetMaxIndex())).Value;
     }
 
     public int Size()

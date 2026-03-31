@@ -21,11 +21,20 @@ public final class EntityFunctions
 
 
     // Static methods.
+    public static boolean ResetAttribute(LivingEntity entity, Attribute attribute)
+    {
+        return ExecuteOnAttribute(entity, attribute, instance ->
+        {
+            RemoveAttributeModifiers(instance);
+            instance.setBaseValue(instance.getDefaultValue());
+        });
+    }
+
     public static boolean ResetAttribute(LivingEntity entity, Attribute attribute, double defaultValue)
     {
         return ExecuteOnAttribute(entity, attribute, atr ->
         {
-            atr.getModifiers().forEach(atr::removeModifier);
+            RemoveAttributeModifiers(atr);
             atr.setBaseValue(defaultValue);
         });
     }
@@ -61,36 +70,7 @@ public final class EntityFunctions
 
     public static boolean IsEntityOnGround(Entity entity)
     {
-        BoundingBox EntityBounds = entity.getBoundingBox();
-
-        int MinX = (int)Math.floor(EntityBounds.getMinX());
-        int MaxX = (int)Math.floor(EntityBounds.getMaxX());
-        int MinY = (int)Math.floor(EntityBounds.getMinY()) - 1;
-        int MaxY = (int)Math.floor(EntityBounds.getMinY());
-        int MinZ = (int)Math.floor(EntityBounds.getMinZ());
-        int MaxZ = (int)Math.floor(EntityBounds.getMaxZ());
-
-
-        double MARGIN_OF_ERROR = 0.00025d;
-        for (int x = MinX; x <= MaxX; x++)
-        {
-            for (int y = MinY; y <= MaxY; y++)
-            {
-                for (int z = MinZ; z <= MaxZ; z++)
-                {
-                    Block TargetBlock = entity.getWorld().getBlockAt(x, y, z);
-                    for (BoundingBox BlockCollisionBounds : TargetBlock.getCollisionShape().getBoundingBoxes())
-                    {
-                        BoundingBox RealBlockBounds = BlockCollisionBounds.shift(x, y, z);
-                        if (PCMath.AreBoundsColliding(EntityBounds, RealBlockBounds, MARGIN_OF_ERROR))
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
+        return PCMath.AreBoundsOnGround(entity.getBoundingBox(), entity.getWorld());
     }
 
 
@@ -115,5 +95,10 @@ public final class EntityFunctions
         }
         func.accept(TargetAttribute);
         return true;
+    }
+
+    private static void RemoveAttributeModifiers(AttributeInstance instance)
+    {
+        instance.getModifiers().forEach(instance::removeModifier);
     }
 }

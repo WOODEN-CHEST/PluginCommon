@@ -1,7 +1,10 @@
 package sus.keiger.plugincommon.player;
 
+import io.papermc.paper.registry.RegistryAccess;
+import io.papermc.paper.registry.RegistryKey;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -113,19 +116,17 @@ public final class PlayerFunctions
         Objects.requireNonNull(mcPlayer, "mcPlayer is null");
         Objects.requireNonNull(predicate, "predicate is null");
 
-        List<ItemStack> FoundItems = new ArrayList<>();
-        List<Integer> FoundItemSlots = new ArrayList<>();
+        Map<Integer, ItemStack> FoundItems = new HashMap<>();
 
         for (int i = SLOT_CURSOR; i <= SLOT_OFFHAND; i++)
         {
             ItemStack TargetItem = GetItem(mcPlayer, i);
             if ((TargetItem != null) && predicate.test(TargetItem))
             {
-                FoundItems.add(TargetItem);
-                FoundItemSlots.add(i);
+                FoundItems.put(i, TargetItem);
             }
         }
-        return new ItemSearchResult(FoundItems, FoundItemSlots);
+        return new ItemSearchResult(FoundItems);
     }
 
     public static boolean ReplaceOrSetItems(Player mcPlayer,
@@ -266,30 +267,13 @@ public final class PlayerFunctions
     /* Attributes. */
     public static void ResetAttributes(Player mcPlayer)
     {
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.MAX_HEALTH, 20d);
+        RegistryAccess.registryAccess().getRegistry(RegistryKey.ATTRIBUTE).forEach(attribute ->
+        {
+            EntityFunctions.ResetAttribute(mcPlayer, attribute);
+        });
+
+        // For some reason the player default movement speed is wrong, so this has to be manually set.
         EntityFunctions.ResetAttribute(mcPlayer, Attribute.MOVEMENT_SPEED, 0.1d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.LUCK, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.ATTACK_DAMAGE, 1d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.ATTACK_SPEED, 4d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.FALL_DAMAGE_MULTIPLIER, 1d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.GRAVITY, 0.08d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.SCALE, 1d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.SAFE_FALL_DISTANCE, 3d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.ARMOR, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.ARMOR_TOUGHNESS, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.BLOCK_BREAK_SPEED, 1d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.ENTITY_INTERACTION_RANGE, 3d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.BLOCK_INTERACTION_RANGE, 4.5d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.STEP_HEIGHT, 0.6d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.JUMP_STRENGTH, 0.42d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.WATER_MOVEMENT_EFFICIENCY, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.SWEEPING_DAMAGE_RATIO, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.SUBMERGED_MINING_SPEED, 0.2d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.SNEAKING_SPEED, 0.3d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.MOVEMENT_EFFICIENCY, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.MINING_EFFICIENCY, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.EXPLOSION_KNOCKBACK_RESISTANCE, 0d);
-        EntityFunctions.ResetAttribute(mcPlayer, Attribute.BURNING_TIME, 1d);
     }
 
 
